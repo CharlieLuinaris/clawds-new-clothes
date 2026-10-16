@@ -48,6 +48,11 @@ const PIXEL_LETTERS={
 // 衣服自己带的颜色只进这一帧的色表，不进 palette——manifest 里的 palette 是老伦敦那 19 色，换装不能悄悄改它；
 // 名字和老色撞了直接报错：撞了就等于给整个人换了皮肤色，这种事得画的人自己起个新名字说清楚
 const OUTFIT_NAME=/^[a-z_][a-z0-9_-]*$/,COLOR_NAME=/^[a-z][A-Za-z0-9]*$/,HEX=/^#[0-9a-f]{6}$/i;
+// 道具让位（outfit.propShift，她 10/16 拍的）：衣服挂在礼帽框外头的东西会撞上老动作里本来画在礼帽旁边空地上的道具——
+// 睡帽吊在帽口外头的绒球（框里 x 130–150），开心那两跳正好接住引擎在檐尖右边画的星。衣服的样子是她定的，不为道具改；
+// 改成让那件道具在这件衣服身上挪开一点。能挪的只有这张表里登记过的：动作名、道具名写错直接报错，写了不生效比报错更难发现。
+// 偏移是画布像素 [dx, dy]、整 5 一步（守 5px 细部格）。不穿衣服、衣服没写 propShift 时偏移全是 0，基础那套和别的衣服一个像素不动
+const PROP_SHIFT_TARGETS=Object.freeze({happy:Object.freeze(['star','smallStarRight'])});
 const outfitColors=new WeakMap();
 function loadOutfit(o){
  let mod=o;
@@ -56,6 +61,19 @@ function loadOutfit(o){
  const label=mod.name||(typeof o==='string'?o:'(module)');
  if(!outfitColors.has(mod)){
   for(const k of ['hat','costume'])if(mod[k]!=null&&typeof mod[k]!=='function')throw Error(`outfit ${label}: ${k} must be a function`);
+  if(mod.propShift!=null){
+   const plain=v=>v&&typeof v==='object'&&!Array.isArray(v);
+   if(!plain(mod.propShift))throw Error(`outfit ${label}: propShift must look like { happy: { star: [20, 0] } }`);
+   for(const [sid,props] of Object.entries(mod.propShift)){
+    const known=PROP_SHIFT_TARGETS[sid];
+    if(!known)throw Error(`outfit ${label}: propShift.${sid}: only ${Object.keys(PROP_SHIFT_TARGETS).join(' / ')} can move props (PROP_SHIFT_TARGETS in engine.cjs)`);
+    if(!plain(props))throw Error(`outfit ${label}: propShift.${sid} must be an object like { ${known[0]}: [20, 0] }`);
+    for(const [k,v] of Object.entries(props)){
+     if(!known.includes(k))throw Error(`outfit ${label}: propShift.${sid}.${k}: ${sid} can only move ${known.join(' / ')}`);
+     if(!Array.isArray(v)||v.length!==2||v.some(n=>!Number.isInteger(n)||n%5))throw Error(`outfit ${label}: propShift.${sid}.${k} must be [dx, dy] in whole 5px steps, got ${JSON.stringify(v)}`);
+    }
+   }
+  }
   const extra={};
   for(const [k,h] of Object.entries(mod.palette||{})){
    if(!COLOR_NAME.test(k))throw Error(`outfit ${label}: color name ${k} should be lowerCamelCase like the old palette`);
@@ -135,6 +153,8 @@ function render(id,index,override={}){
  const bt={cx:150+p.dx,cy:bottom,a:p.lean};
  const br=(layer,x,y,w,h,c,tag)=>r(layer,x,y,w,h,c,bt,tag);
  const star=(x,y,u=4)=>pat('effects',['00100','00100','11111','01110','11011'],x,y,'goldLight',u);
+ // 这一支的这件道具要给衣服让多少（PROP_SHIFT_TARGETS 里登记过的才会被问到）
+ const shiftOf=prop=>outfit?.mod.propShift?.[id]?.[prop]||[0,0];
  const smallStar=(x,y)=>{r('effects',x+4,y,5,13,'gold');r('effects',x,y+4,13,5,'gold');};
  function envelope(x,y,w=44,h=30){
   r('letter',x,y,w,h,'paperEdge',null,'envelope');r('letter',x+2,y+2,w-4,h-4,'white');
@@ -296,8 +316,10 @@ function render(id,index,override={}){
  }
  if(id==='happy'){
   // 小星星在空中那几帧往上蹦一格，大星按帧号亮
-  const up=p.jump<-20?-10:0;smallStar(66,170+up);smallStar(221,180+up);
-  if(p.tool.star)star(214,125,3);
+  // 右边那颗小星星和大星听衣服的 propShift 让位（见 PROP_SHIFT_TARGETS）；没写就是 [0, 0]，画法和原来逐字一样
+  const up=p.jump<-20?-10:0,[sx,sy]=shiftOf('smallStarRight'),[bx,by]=shiftOf('star');
+  smallStar(66,170+up);smallStar(221+sx,180+up+sy);
+  if(p.tool.star)star(214+bx,125+by,3);
  }
  if(id==='notification'){
   const h=p.hands[1],x=h.x+1,y=h.y-22,tr={cx:h.x+10,cy:h.y+10,a:p.tool.bellAngle};

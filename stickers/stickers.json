@@ -6948,33 +6948,33 @@
       },
       "box": {
         "left": 51,
-        "top": 90,
-        "side": 198
+        "top": 87,
+        "side": 204
       },
       "sizes": {
         "300": {
           "scale": 1,
           "gif": "nightcap/300/clawd-happy.gif",
           "png": "nightcap/300/clawd-happy.png",
-          "gifBytes": 62353,
-          "pngBytes": 1025,
-          "fill": 0.62
+          "gifBytes": 62681,
+          "pngBytes": 1028,
+          "fill": 0.64
         },
         "408": {
           "scale": 2,
           "gif": "nightcap/408/clawd-happy.gif",
           "png": "nightcap/408/clawd-happy.png",
-          "gifBytes": 118709,
-          "pngBytes": 2031,
-          "fill": 0.91
+          "gifBytes": 119335,
+          "pngBytes": 2044,
+          "fill": 0.94
         },
         "618": {
           "scale": 3,
           "gif": "nightcap/618/clawd-happy.gif",
           "png": "nightcap/618/clawd-happy.png",
-          "gifBytes": 188020,
-          "pngBytes": 3989,
-          "fill": 0.9
+          "gifBytes": 188829,
+          "pngBytes": 4013,
+          "fill": 0.93
         }
       }
     },
