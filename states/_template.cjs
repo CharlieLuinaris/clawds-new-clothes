@@ -1,4 +1,4 @@
-// clawd-new-coat · states/_template.cjs · template by Luin Luinaris, free to copy for your own moves · unofficial Clawd fan work, Clawd belongs to Anthropic
+// clawds-new-clothes · states/_template.cjs · template by Luin Luinaris, free to copy for your own moves · unofficial Clawd fan work, Clawd belongs to Anthropic
 // SPDX-FileCopyrightText: 2026 Charlie Luinaris
 // SPDX-FileContributor: Luin Luinaris
 // SPDX-License-Identifier: MIT

@@ -1,4 +1,4 @@
-// clawd-new-coat · outfits/aviator.cjs · design by Charlie Luinaris, pixels & animation by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
+// clawds-new-clothes · outfits/aviator.cjs · design by Charlie Luinaris, pixels & animation by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
 // SPDX-FileCopyrightText: 2026 Charlie Luinaris
 // SPDX-FileContributor: Luin Luinaris
 // SPDX-License-Identifier: CC-BY-NC-SA-4.0

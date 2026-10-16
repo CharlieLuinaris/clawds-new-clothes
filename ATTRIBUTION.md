@@ -25,9 +25,6 @@ The first Clawd in our home came from [Clawd on Desk](https://github.com/rullerz
 
 **本仓库没有收录 Clawd on Desk 的任何代码或图片。** 它的代码是 AGPL-3.0，美术保留所有权利，这两样我们都没用。这里的每一个像素都是本仓库自己的引擎用代码画出来的（`motion.cjs` 管节奏与姿势，`engine.cjs` 按图层画像素），不读入、不复制、不打包它的任何图片，也没有用它的 Electron 运行时。
 
-Clawd on Desk 的 README 写明它的 Clawd 像素画参考自 [Clawd Tank](https://github.com/marciogranzotto/clawd-tank)（@marciogranzotto，MIT）。本仓库与 Clawd Tank 没有直接关系，也没有收录它的代码或图片。
-Clawd on Desk's README credits Clawd Tank by @marciogranzotto (MIT) as the reference for its pixel art. This repository has no direct connection to Clawd Tank and includes none of its code or artwork.
-
 ## 3. 做这只小家伙的人 · The makers
 
 | 谁 · Who | 做了什么 · What |
@@ -37,13 +34,12 @@ Clawd on Desk's README credits Clawd Tank by @marciogranzotto (MIT) as the refer
 
 转发、二次创作时请带上这行署名 · When you share or remix, please keep this credit line:
 
-> clawd-new-coat · animation by Luin Luinaris · outfits by Charlie Luinaris · CC BY-NC-SA 4.0 · unofficial Clawd fan work
+> clawds-new-clothes · animation by Luin Luinaris · outfits by Charlie Luinaris · CC BY-NC-SA 4.0 · unofficial Clawd fan work
 
 ## 4. 本仓库不包含什么 · What this repository does not contain
 
 - **Clawd on Desk 的任何代码或图片**（包括经典 Clawd 动画）都不在这里。
   **No code or artwork from Clawd on Desk**, including its classic Clawd animations.
-- **Clawd Tank 的任何代码或图片。** · **No code or artwork from Clawd Tank.**
 - **Anthropic 的标识或官方素材**：没有星芒 logo、没有 Claude 字标、没有 press kit 里的任何东西。
   **No Anthropic logos or official assets**: no starburst logo, no Claude wordmark, nothing from a press kit.
 - **四套衣服的原稿**：Charlie 的原稿留在家里，没有公开；`outfits/*.cjs` 是照着它们重新起稿的点阵代码。

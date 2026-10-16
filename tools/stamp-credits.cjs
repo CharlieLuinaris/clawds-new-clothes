@@ -1,5 +1,5 @@
 #!/usr/bin/env node
-// clawd-new-coat · tools/stamp-credits.cjs · by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
+// clawds-new-clothes · tools/stamp-credits.cjs · by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
 // SPDX-FileCopyrightText: 2026 Charlie Luinaris
 // SPDX-FileContributor: Luin Luinaris
 // SPDX-License-Identifier: MIT

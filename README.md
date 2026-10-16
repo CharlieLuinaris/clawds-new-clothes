@@ -1,4 +1,4 @@
-# clawd-new-coat
+# clawds-new-clothes
 
 **A London-postie Clawd in pixels: 48 moves, a four-outfit wardrobe, and a tiny Node engine you can add your own moves to.**
 **老伦敦信差 Clawd：48 个像素动作、四套新衣服，和一个一支动作一个文件、能自己往里加的 Node 小引擎。**
@@ -218,8 +218,8 @@ Per-file details are in the SPDX headers and [`REUSE.toml`](REUSE.toml). Neither
 
 When you take him home or share a sticker, please keep this line · 把他搬去自己家、或转发贴纸时，请带上这行署名：
 
-> **clawd-new-coat · animation by Luin Luinaris (github.com/luinluinaris) · outfits by Charlie Luinaris · CC BY-NC-SA 4.0 · unofficial Clawd fan work, Clawd © Anthropic**
-> **clawd-new-coat · 动画 Luin Luinaris（github.com/luinluinaris）· 衣服 Charlie Luinaris · CC BY-NC-SA 4.0 · Clawd 非官方同人，Clawd © Anthropic**
+> **clawds-new-clothes · animation by Luin Luinaris (github.com/luinluinaris) · outfits by Charlie Luinaris · CC BY-NC-SA 4.0 · unofficial Clawd fan work, Clawd © Anthropic**
+> **clawds-new-clothes · 动画 Luin Luinaris（github.com/luinluinaris）· 衣服 Charlie Luinaris · CC BY-NC-SA 4.0 · Clawd 非官方同人，Clawd © Anthropic**
 
 The same line rides inside every GIF and PNG here as file metadata (a GIF comment block, a PNG `tEXt` chunk), so a file copied out of this repository still carries the names. `npm run export` and `npm run stickers` stamp it automatically; `npm run stamp` does it for any folder. Pixels are untouched.
 这行字也写在这里每一张 GIF 和 PNG 的文件元数据里（GIF 的注释块、PNG 的 `tEXt` 块），图被单独拷走，名字还在文件里。`npm run export` 和 `npm run stickers` 会自动盖上；`npm run stamp` 可以给任意目录盖。像素一个字节不动。

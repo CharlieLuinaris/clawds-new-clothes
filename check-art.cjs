@@ -1,4 +1,4 @@
-// clawd-new-coat · check-art.cjs · art checks by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
+// clawds-new-clothes · check-art.cjs · art checks by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
 // SPDX-FileCopyrightText: 2026 Charlie Luinaris
 // SPDX-FileContributor: Luin Luinaris
 // SPDX-License-Identifier: MIT

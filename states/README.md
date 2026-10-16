@@ -27,7 +27,7 @@ node export.cjs && node check-art.cjs            # ③ 画完了：整包导出�
 
 <!-- REUSE-IgnoreStart -->
 ```js
-// clawd-new-coat · states/my-move.cjs · animation by <你的名字> · unofficial Clawd fan work, Clawd belongs to Anthropic
+// clawds-new-clothes · states/my-move.cjs · animation by <你的名字> · unofficial Clawd fan work, Clawd belongs to Anthropic
 // SPDX-FileCopyrightText: 2026 <你的名字>
 // SPDX-FileContributor: <你的名字>
 // SPDX-License-Identifier: MIT

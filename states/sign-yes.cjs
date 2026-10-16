@@ -1,4 +1,4 @@
-// clawd-new-coat · states/sign-yes.cjs · animation by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
+// clawds-new-clothes · states/sign-yes.cjs · animation by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
 // SPDX-FileCopyrightText: 2026 Charlie Luinaris
 // SPDX-FileContributor: Luin Luinaris
 // SPDX-License-Identifier: MIT
