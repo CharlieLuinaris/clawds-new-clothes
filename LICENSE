@@ -29,18 +29,17 @@ header names the MIT license, plus the files REUSE.toml marks as MIT.
 
 It does NOT cover:
 - the artwork (the four outfit designs in outfits/, the exported GIF / PNG /
-  sticker files, and the docs), which is offered under CC BY-NC-SA 4.0, see
-  LICENSES/CC-BY-NC-SA-4.0.txt;
+  sticker files and the other export outputs listed in NOTICE, and the docs),
+  which is offered under CC BY-NC-SA 4.0, see LICENSES/CC-BY-NC-SA-4.0.txt;
 - the Clawd character, or the names and logos "Clawd", "Claude",
   "Claude Code" and "Anthropic", all of which belong to Anthropic, PBC.
   Neither license in this repository grants any right in them.
 
 This is an unofficial fan work, not made by, affiliated with, sponsored by or
-endorsed by Anthropic. Everything this engine draws is Clawd, so please keep
-what you make with it non-commercial.
+endorsed by Anthropic.
 
 MIT 只管这个仓库里的代码（文件头写着 MIT 的那些，和 REUSE.toml 标成 MIT 的那些）。
-四套衣服的设计、导出的 GIF / PNG / 贴纸和文档是美术，走 CC BY-NC-SA 4.0。
+四套衣服的设计、导出的 GIF / PNG / 贴纸（连同 NOTICE 里列的其他导出件）和文档是美术，
+走 CC BY-NC-SA 4.0。
 Clawd 这个角色，和「Clawd」「Claude」「Claude Code」「Anthropic」这些名字与标识，
-都属于 Anthropic，两份许可都不涉及。这是非官方的同人作品；引擎画出来的每一帧都是 Clawd，
-所以拿它做的东西也请别拿去卖。
+都属于 Anthropic，两份许可都不涉及。这是非官方的同人作品。

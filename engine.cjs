@@ -4,7 +4,7 @@
 // SPDX-License-Identifier: MIT
 const {STATES,pose,TAU}=require('./motion.cjs');
 const W=300,H=300;
-// 走跑的地面：脚底 273 之下一条滚动虚线，角色不动、地在走。接入方要在地图上自己画轨迹时，把它关掉重导。
+// 走跑的地面：脚底 273 之下一条滚动虚线，角色不动、地在走。接入方要自己画地面或轨迹时，把它关掉重导。
 const GROUND=true;
 const palette={skin:'#ff8964',skinSide:'#ed7758',ink:'#262329',leather:'#694631',leatherLight:'#926044',leatherDark:'#422e27',gold:'#dbaa39',goldLight:'#f7d471',paper:'#edddba',paperEdge:'#c9b28d',white:'#fff7df',red:'#bf5147',redLight:'#e2745f',blue:'#49879d',green:'#709777',grey:'#94958d',earWhite:'#ffffff',earShade:'#ced5d7',hatRim:'#7a7386'};
 const rgba=Object.fromEntries(Object.entries(palette).map(([k,h])=>[k,[...h.matchAll(/[\da-f]{2}/gi)].map(x=>parseInt(x[0],16)).concat(255)]));
@@ -41,17 +41,9 @@ const PIXEL_LETTERS={
  c:['00000','00000','01110','10001','10000','10001','01110'],
  o:['00000','00000','01110','10001','10001','10001','01110'],
  d:['00001','00001','01111','10001','10001','10001','01111'],
- e:['00000','00000','01110','10001','11111','10000','01110'],
- // 搬出来住那天添的六个：打字头顶那串字原来是另一个词，公开版换成中性的 typing...，还是九个字、5×7 的格子、同一套落键弹跳。
- // 带下伸的 y、p、g 照老的 5×7 点阵字那样把肚子往上提一格，不另开第八行——九个字的底边还是齐的
- y:['00000','00000','10001','10001','01111','00001','01110'],
- p:['00000','00000','11110','10001','11110','10000','10000'],
- i:['00100','00000','01100','00100','00100','00100','01110'],
- n:['00000','00000','10110','11001','10001','10001','10001'],
- g:['00000','00000','01111','10001','01111','00001','01110'],
- '.':['00000','00000','00000','00000','00000','01100','01100']
+ e:['00000','00000','01110','10001','11111','10000','01110']
 };
-// 换装（她 10/13 夜里画的四套，10/15 定了照他的身板重画）：一套衣服是 outfits/<name>.cjs 里的一个模块，
+// 换装（她 10/13 画的四套，10/15 定了照他的身板重画）：一套衣服是 outfits/<name>.cjs 里的一个模块，
 // renderVariant(id, i, { outfit: 'beret' }) 才会穿上；不传 outfit 时下面这些一行都不跑，四十个老状态逐字节不变。
 // 衣服自己带的颜色只进这一帧的色表，不进 palette——manifest 里的 palette 是老伦敦那 19 色，换装不能悄悄改它；
 // 名字和老色撞了直接报错：撞了就等于给整个人换了皮肤色，这种事得画的人自己起个新名字说清楚
@@ -287,7 +279,7 @@ function render(id,index,override={}){
   r('props',126,paperY,48,18,'paper');
   r('props',86,249,128,12,'grey');r('props',91,246,118,7,'grey');
   for(let j=0;j<9;j++)r('props',96+j*12,254,6,4,'ink');
-  const word='typing...',colors=['redLight','gold','green','blue','gold','redLight','green','blue','gold'];
+  const word='Ultracode',colors=['redLight','gold','green','blue','gold','redLight','green','blue','gold'];
   lettering={text:word,unit:3,letters:[]};
   [...word].forEach((char,i)=>{
    const k=index-p.tool.press[i];

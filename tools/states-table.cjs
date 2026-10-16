@@ -11,7 +11,13 @@ const fs = require('node:fs');
 const path = require('node:path');
 const ROOT = path.resolve(__dirname, '..');
 const OUT = process.argv[2] || path.join(ROOT, 'docs/states.md');
-const manifest = JSON.parse(fs.readFileSync(path.join(ROOT, 'manifest.json'), 'utf8'));
+const MANIFEST = path.join(ROOT, 'manifest.json');
+// 新克隆里没有 manifest（它在 .gitignore 里），照表直接跑会吐一串 ENOENT 的堆栈，像脚本坏了；先说一句人话再走
+if (!fs.existsSync(MANIFEST)) {
+  console.error('还没有 manifest.json：先跑 npm run export，再跑这个 · manifest.json not found, run `npm run export` first');
+  process.exit(1);
+}
+const manifest = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'));
 
 const EN = {
   idle: 'Idle', typing: 'Typing', thinking: 'Checking the pocket watch', happy: 'Happy', notification: 'Ringing the bell, a letter for you',

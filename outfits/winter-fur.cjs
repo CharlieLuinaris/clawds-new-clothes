@@ -2,9 +2,9 @@
 // SPDX-FileCopyrightText: 2026 Charlie Luinaris
 // SPDX-FileContributor: Luin Luinaris
 // SPDX-License-Identifier: CC-BY-NC-SA-4.0
-// 毛领风雪帽 · 冬衣（她 10/13 夜画的 winter-fur-a / winter-fur-b，10/15 照他的身板一格一格重画）
+// 毛领风雪帽 · 冬衣（她 10/13 画的 winter-fur-a / winter-fur-b，10/15 照他的身板一格一格重画）
 //
-// 10/15 早上她点破的：她每套画的 a 是背面、b 是正面。第一稿把 a、b 当成了两件衣服，winter-fur 那件正面穿的其实是她画的背面。
+// 10/15 她点破的：她每套画的 a 是背面、b 是正面。第一稿把 a、b 当成了两件衣服，winter-fur 那件正面穿的其实是她画的背面。
 // 这回只有一件：
 // - 正面照 b：深蓝圆顶的兜帽、额头一圈往上长齿的米色毛、兜帽两边的深蓝一直包下来、底下垂两片毛护耳，脸开在这一圈毛中间；
 //   下巴底下一圈毛领，领口一截浅蓝系带、带尾垂在金扣右边、末端剪成穗子；深蓝冬衣、棕腰带、一枚方方的大金扣。

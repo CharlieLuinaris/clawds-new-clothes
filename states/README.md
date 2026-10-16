@@ -5,29 +5,29 @@
 放进来就生效：`motion.cjs` 启动时按文件名顺序把 `states/` 里的文件读进 `STATES`，排在四十个老动作后面；`node export.cjs` 出 frames / gif / static / keyframes / sheets / 图集 / manifest，`node check-art.cjs` 每帧查一遍，`preview.html` 挂「新」标排在各组前头。老动作一行没搬，`states/` 里没有正式文件时，导出来的东西和以前逐字节相同。
 
 - 正式文件：`states/<id>.cjs`，**文件名就是 id**（小写英文、用 `-` 连，比如 `sign-yes.cjs`）。两个人起了同一个名字，在读文件那一刻就报错，不会等到导出时一支把另一支的 gif 盖掉。
-- 草稿：`_` 开头的文件（比如 `_sign-yes.cjs`、`_template.cjs`）不进 `STATES`，只有 `--state _名字 --preview` 时临时登记。还没画好的放草稿，不会弄坏别人的导出。
-- 名字不合规矩的脚本（`Sign_Yes.cjs`、`sign-yes.js`）不会悄悄跳过，终端会说一声没读进来。
+- 草稿：`_` 开头的文件（比如 `_my-move.cjs`、`_template.cjs`）不进 `STATES`，只有 `--state _名字 --preview` 时临时登记。还没画好的放草稿，不会弄坏别人的导出。
+- 名字不合规矩的脚本（`My_Move.cjs`、`my-move.js`）不会悄悄跳过，终端会说一声没读进来。
 
 ## 起手三步
 
 ```sh
 npm ci                                           # ⓪ 第一次：装 sharp / jszip（版本钉死，导出来的图才和仓库里的逐字节相同）
 
-cp states/_template.cjs states/sign-yes.cjs     # ① 抄模板（一支「蹦两下」），改 id 和 label
-node export.cjs --state sign-yes --preview       # ② 改一笔看一眼：图存到 states/preview/，问题打在终端，退出码 1 就是有问题
+cp states/_template.cjs states/my-move.cjs      # ① 抄模板（一支「蹦两下」），把 id 改成 my-move（和文件名一样），label 也改掉
+node export.cjs --state my-move --preview        # ② 改一笔看一眼：图存到 states/preview/，问题打在终端，退出码 1 就是有问题
 node export.cjs && node check-art.cjs            # ③ 画完了：整包导出、整套查一遍，退出码 0 才算过
 ```
 
 不抄也能先看模板长什么样：`node export.cjs --state _template --preview`。
 
-同样的事也有 npm 的写法：`npm run preview:state -- sign-yes`、`npm run export`、`npm run check`。
+同样的事也有 npm 的写法：`npm run preview:state -- my-move`、`npm run export`、`npm run check`。
 
 **文件头**：模板开头那四行照着改——第一行写给人看（仓库名 · 文件路径 · 谁画的 · 非官方同人的那半句），后三行给工具看（版权人、谁画的、许可），每个标签单独一行。
 动作文件走 MIT，和引擎一样，别人抄你的骨架去画自己的动作不受限制；画进去的要是你自己的角色设计、想换许可，就在这里改，再在 `REUSE.toml` 里核一遍。
 
 <!-- REUSE-IgnoreStart -->
 ```js
-// clawd-new-coat · states/sign-yes.cjs · animation by <你的名字> · unofficial Clawd fan work, Clawd belongs to Anthropic
+// clawd-new-coat · states/my-move.cjs · animation by <你的名字> · unofficial Clawd fan work, Clawd belongs to Anthropic
 // SPDX-FileCopyrightText: 2026 <你的名字>
 // SPDX-FileContributor: <你的名字>
 // SPDX-License-Identifier: MIT
@@ -204,9 +204,9 @@ check: {
 ## 预览怎么跑
 
 ```sh
-node export.cjs --state sign-yes --preview                  # 正式文件
-node export.cjs --state _sign-yes --preview                 # 草稿
-node export.cjs --state sign-yes --preview --outfit beret   # 穿上贝雷帽再看（文件名多一段 -beret）
+node export.cjs --state my-move --preview                   # 正式文件
+node export.cjs --state _my-move --preview                  # 草稿
+node export.cjs --state my-move --preview --outfit beret    # 穿上贝雷帽再看（文件名多一段 -beret）
 ```
 
 只渲染这一支，存到 `states/preview/`（不进 git、不进包）：
@@ -297,7 +297,7 @@ for o in aviator beret nightcap winter-fur; do node check-art.cjs --outfit $o; d
 - **拿在手里会撞帽子的道具，放下来时藏到 paper 层**：举牌的牌子直径 55，手垂到底牌面还在耳朵边上，画在前面一定压着檐尖、绒球、毛边。垂着的那几帧整块挪到最底的 paper 层，帽子和身子自然挡住靠里那一圈，换哪套帽子都是帽子盖牌。
 - **两支成对就一个数都别改**：举✅ / 举❌同一只手、同一个柄、同一块牌、同一组手位和同一个「垂着藏到后面」，摆在一起只差颜色、记号、眼神。后画的那支先抄前一支的骨架，再改不一样的地方。
 - **要接另一支的 `once` 段，姿势整套抄过去**：求抱抱第 15 帧要和「被抱起来」第 0 帧逐像素全等，手、脚、脚的横挪、帽子横挪、往上看一个数都不能差，泪光那几帧也得收起来（那边没有）。模块里抄的那份写清楚「那边改了这边跟着改」，`check-art` 会逐像素比 `next`。
-- **预览图别提交**：`states/preview/` 在 `.gitignore` 里，可第一批七支都把自己的预览图（四帧、x3、缩略表、GIF）一起提交了，`git add -f` 或者整个目录加进去都会这样。提交前看一眼 `git status`，只加你自己的 `states/<id>.cjs`；整包导出的产物（gif/ static/ frames/ …）由出包的人一次提交。
+- **预览图别提交**：`states/preview/` 在 `.gitignore` 里，可 `git add -f`、或者把整个目录加进去，都会把预览图（四帧、x3、缩略表、GIF）一起带进提交。提交前看一眼 `git status`，只加你自己的 `states/<id>.cjs`；整包导出的产物（gif/ static/ frames/ …）由出包的人一次提交。
 - **外框会决定贴纸裁多大**：618 档要放大 ×3，方框得在 206 以内，第一批疑惑 222、大笑 240、震惊 235（问号、抖动线、金线和它的影子都在两边）。不是不许，只是那几支裁贴纸要退一档。冒出来的星、心往上飘比往两边散省地方（捧心第一版散到 x 10–290）。
 
 ## 第一批第二轮复审踩的坑

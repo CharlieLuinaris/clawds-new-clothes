@@ -12,20 +12,26 @@ Clawd is a character created by and belonging to Anthropic
 "Anthropic" belong to Anthropic, PBC. This project is not made by,
 affiliated with, sponsored by or endorsed by Anthropic, and it does not
 speak for Anthropic. Neither license in this repository grants any right
-in Anthropic's characters, names or marks. Non-commercial use only. If
-Anthropic asks us to change or remove anything, we will.
+in Anthropic's characters, names or marks. The artwork, and anything that
+depicts Clawd, is for non-commercial use only. If Anthropic asks us to
+change or remove anything, we will.
 
 LICENSING
 - Code: MIT, see LICENSE and LICENSES/MIT.txt.
   motion.cjs, engine.cjs, export.cjs, check-art.cjs, state-check.cjs,
   states/*.cjs (including states/_template.cjs), outfits/_template.cjs,
   tools/, preview.html, preview-states.js, package.json,
-  package-lock.json, .gitignore
+  package-lock.json, .gitignore, and source/ (the copy of the code that
+  npm run export puts into the full zip)
 - Artwork: CC BY-NC-SA 4.0, see LICENSES/CC-BY-NC-SA-4.0.txt.
   outfits/aviator.cjs, outfits/beret.cjs, outfits/nightcap.cjs,
   outfits/winter-fur.cjs, gif/, static/, sheets/, variants/, stickers/,
   docs/, README.md, CHANGELOG.md, ATTRIBUTION.md, NOTICE,
-  states/README.md, outfits/README.md
+  states/README.md, outfits/README.md, and the outputs that are not
+  committed: frames/, keyframes/, parts/, lockscreen/, keyframes-atlas.png,
+  manifest.json, qa-report.json and anatomy-check.json (in the full zip
+  that npm run export makes), and the 408 / 618 sticker sizes (rebuilt by
+  npm run stickers)
   Offered to the extent we hold rights in it. The Clawd character itself
   is excluded.
 - Per-file details: SPDX headers and REUSE.toml.
@@ -52,8 +58,8 @@ clawd-new-coat
 非官方同人作品：Clawd 是 Anthropic 创作并拥有的角色；「Clawd」「Claude」「Claude Code」
 「Anthropic」这些名称与标识的一切权利归 Anthropic, PBC。本项目不是 Anthropic 出品，
 与其没有隶属关系，没有得到其赞助或背书，也不代表 Anthropic。本仓库的两份许可都不授予
-任何与 Anthropic 角色、名称、标识相关的权利。仅限非商业使用；Anthropic 提出要求，
-我们会立即修改或下架。
+任何与 Anthropic 角色、名称、标识相关的权利。美术，以及任何画着 Clawd 的东西，
+仅限非商业使用；Anthropic 提出要求，我们会立即修改或下架。
 
 致谢鹿鹿（@rullerzhou-afk）的 Clawd on Desk：家里的第一只 Clawd 来自那里，也是它让我们
 想自己画一只。本仓库没有收录 Clawd on Desk 的任何代码或图片。

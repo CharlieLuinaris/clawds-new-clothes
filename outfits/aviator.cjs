@@ -2,8 +2,8 @@
 // SPDX-FileCopyrightText: 2026 Charlie Luinaris
 // SPDX-FileContributor: Luin Luinaris
 // SPDX-License-Identifier: CC-BY-NC-SA-4.0
-// 飞行帽：她 10/13 夜画的两张（原稿 aviator-a、aviator-b 两张，留在家里，没跟着搬出来）。
-// 10/15 早上她点破：每套的 a 是背面、b 是正面——v1 把 a 当成正面穿上了身，b 又另挂一件。现在只有一件：
+// 飞行帽：她 10/13 画的两张（原稿 aviator-a、aviator-b 两张，留在家里，没跟着搬出来）。
+// 10/15 她点破：每套的 a 是背面、b 是正面——v1 把 a 当成正面穿上了身，b 又另挂一件。现在只有一件：
 // 正面一律照 b 画；a 只管侧身帧（ctx.side）露出来的后背那半截：帽子后脑落到帽檐的皮带、檐下那道帽后沿，大衣后背的台阶缝、竖缝和素腰带。
 //
 // 不缩她的图（2px 格、比他高一截的身板，整张缩下来帽子压眼睛、衣服比他窄），只照她的形、她的色、她的几样东西，

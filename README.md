@@ -119,7 +119,7 @@ GIF、静图和 300 档贴纸已经在仓库里，拿来就能用；`npm run exp
 | `npm run stickers` | after `export`: 300 / 408 / 618 sticker sizes + `stickers/stickers.json` · 先导出，再裁三档贴纸 |
 | `npm run preview` | prints the link to `preview.html`, a gallery with pause, dark mode and keyframes · 打印预览页的地址 |
 | `npm run check:outfits` | every frame of every move, wearing each of the four outfits · 四套衣服都穿上整套查 |
-| `npm run docs:states` | regenerate `docs/states.md` from the manifest · 重出动作总表 |
+| `npm run docs:states` | after `export`: regenerate `docs/states.md` from the manifest · 先导出，再重出动作总表 |
 
 To show one on a page, respect reduced motion · 放进网页时，记得给「减少动态效果」留一张静图：
 
@@ -137,6 +137,9 @@ One move is one file in `states/`. Drop it in and the export, the checks, the ma
 
 ```sh
 cp states/_template.cjs states/my-move.cjs    # a two-hop starter · 模板是一支「蹦两下」
+# the id inside must match the file name: change id: 'hop-twice' to id: 'my-move' (or edit it by hand)
+# 文件名和 id 要一样：把文件里的 id: 'hop-twice' 改成 id: 'my-move'（手改也行）
+perl -pi -e "s/id: 'hop-twice'/id: 'my-move'/" states/my-move.cjs
 npm run preview:state -- my-move              # 4 frames, ×3 zoom, a 70 px contact sheet and a GIF in states/preview/
 npm run export && npm run check               # in the pack, checked · 进包，整套查一遍
 ```

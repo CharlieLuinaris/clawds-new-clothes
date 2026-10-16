@@ -94,24 +94,24 @@
           "scale": 1,
           "gif": "300/clawd-typing.gif",
           "png": "300/clawd-typing.png",
-          "gifBytes": 57100,
-          "pngBytes": 1182,
+          "gifBytes": 60797,
+          "pngBytes": 1194,
           "fill": 0.56
         },
         "408": {
           "scale": 2,
           "gif": "408/clawd-typing.gif",
           "png": "408/clawd-typing.png",
-          "gifBytes": 109576,
-          "pngBytes": 2248,
+          "gifBytes": 119124,
+          "pngBytes": 2318,
           "fill": 0.82
         },
         "618": {
           "scale": 3,
           "gif": "618/clawd-typing.gif",
           "png": "618/clawd-typing.png",
-          "gifBytes": 172605,
-          "pngBytes": 4301,
+          "gifBytes": 192506,
+          "pngBytes": 4483,
           "fill": 0.82
         }
       }

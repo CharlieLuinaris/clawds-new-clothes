@@ -25,8 +25,8 @@ The first Clawd in our home came from [Clawd on Desk](https://github.com/rullerz
 
 **本仓库没有收录 Clawd on Desk 的任何代码或图片。** 它的代码是 AGPL-3.0，美术保留所有权利，这两样我们都没用。这里的每一个像素都是本仓库自己的引擎用代码画出来的（`motion.cjs` 管节奏与姿势，`engine.cjs` 按图层画像素），不读入、不复制、不打包它的任何图片，也没有用它的 Electron 运行时。
 
-Clawd on Desk 的 README 写明它的 Clawd 像素画参考自 [Clawd Tank](https://github.com/marciogranzotto/clawd-tank)（@marciogranzotto，MIT），所以这只小家伙的家谱上也有它一笔。本仓库同样没有收录 Clawd Tank 的代码或图片。
-Clawd on Desk credits Clawd Tank by @marciogranzotto (MIT) as the reference for its pixel art, so it is part of this little one's family tree too. No code or artwork from Clawd Tank is included here either.
+Clawd on Desk 的 README 写明它的 Clawd 像素画参考自 [Clawd Tank](https://github.com/marciogranzotto/clawd-tank)（@marciogranzotto，MIT）。本仓库与 Clawd Tank 没有直接关系，也没有收录它的代码或图片。
+Clawd on Desk's README credits Clawd Tank by @marciogranzotto (MIT) as the reference for its pixel art. This repository has no direct connection to Clawd Tank and includes none of its code or artwork.
 
 ## 3. 做这只小家伙的人 · The makers
 
@@ -41,13 +41,13 @@ Clawd on Desk credits Clawd Tank by @marciogranzotto (MIT) as the reference for 
 
 ## 4. 本仓库不包含什么 · What this repository does not contain
 
-- **Clawd on Desk 的任何代码或图片**，包括家里原本用着的那套经典 Clawd 动画（那一套来自 Clawd on Desk，美术保留所有权利，只在家里自己用，不随本仓库分发）。
-  **No code or artwork from Clawd on Desk**, including the classic Clawd animations our home used before (they come from Clawd on Desk, are all rights reserved, and are not redistributed here).
+- **Clawd on Desk 的任何代码或图片**（包括经典 Clawd 动画）都不在这里。
+  **No code or artwork from Clawd on Desk**, including its classic Clawd animations.
 - **Clawd Tank 的任何代码或图片。** · **No code or artwork from Clawd Tank.**
 - **Anthropic 的标识或官方素材**：没有星芒 logo、没有 Claude 字标、没有 press kit 里的任何东西。
   **No Anthropic logos or official assets**: no starburst logo, no Claude wordmark, nothing from a press kit.
-- **四套衣服的手绘原稿**：Charlie 画的原稿留在家里，没有公开；`outfits/*.cjs` 是照着它们重新起稿的点阵代码。
-  **The hand-drawn outfit originals**: Charlie's original drawings stay at home and are not published; `outfits/*.cjs` is pixel code redrawn from them.
+- **四套衣服的原稿**：Charlie 的原稿留在家里，没有公开；`outfits/*.cjs` 是照着它们重新起稿的点阵代码。
+  **The outfit originals**: Charlie's originals stay at home and are not published; `outfits/*.cjs` is pixel code redrawn from them.
 - **画动作时看过的参考图**：第一批画表情时，Charlie 递来过几张别人画的猫咪表情包截图当参考。那些图不是我们的，没收进来；`states/*.cjs` 注释里提到的 `ref-N` 指的就是它们，只取过「这一格靠什么读出来」，猫的画法一笔没拿。
   **Reference images**: while drawing the first batch, Charlie shared a few screenshots of someone else's cat stickers. They are not ours and are not included; the `ref-N` mentions in `states/*.cjs` refer to them. Only the idea of what makes each panel readable was taken, never the drawing.
 - **个人肖像与照片**：我们俩的 Q 版形象、照片、截图都不在这里。 · **No portraits or photos** of either of us.

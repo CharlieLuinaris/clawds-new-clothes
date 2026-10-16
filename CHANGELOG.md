@@ -11,8 +11,8 @@ This little one grew version by version. The full development diary stays at hom
 搬出来住的这一版。动作、衣服、规矩和家里那份是同一个版本；只动了「搬家」要动的地方：
 The first public version. Same moves, outfits and rules as at home; only the moving-out changes:
 
-- **打字头顶的像素字换成 `typing...`**：原来是另一个词，公开版换成中性的说法。还是九个字、5×7 的点阵、每次落键只蹦一个字（`check-art` 的 `typingOneLetterPerPress` 照查照过），新添 `y p i n g .` 六个字形。所以 `typing` 这一支的 GIF、静图、关键帧表和贴纸和家里不一样了，**其余 47 支和朝西的指路逐字节相同**。
-  The pixel word above *typing* is now `typing...` (nine glyphs, same bounce timing). Only `typing`'s outputs changed; the other 47 moves and the west-facing variant are byte-identical to the home version.
+- 48 支动作和朝西的指路：`gif/`、`static/`、300 档贴纸和家里那份逐字节相同，一个像素没动。
+  All 48 moves and the west-facing variant (`gif/`, `static/`, 300 px stickers) are byte-identical to the home version.
 - 依赖改由 `package.json` 钉版本（sharp 0.35.5、jszip 3.10.1），`npm ci` 装出来的才和仓库里的图逐字节相同；全量导出的 zip 名跟着 `package.json` 的名字和版本走。
 - `tools/outfit-sheet.cjs` 的原稿那一格改成可选（`--originals <目录>`）；`tools/batch-sheet.cjs` 拿掉了「参考格」那一列（参考图是别人画的，没搬出来）；新加 `tools/states-table.cjs`，从 manifest 出 `docs/states.md`。
 - 贴纸只有 300 档进 git；408 / 618 两档和 `frames/`、`keyframes/`、`manifest.json` 这些大件一样，`npm run export` / `npm run stickers` 逐字节重出。
@@ -26,7 +26,7 @@ Eight new moves, each in its own file under `states/`; the 40 older moves stayed
 - `surprised` 震惊愣住 · `hug-please` 求抱抱 · `confused` 歪头疑惑 · `heart-gift` 捧心比心 · `sweating` 尴尬流汗 · `laughing` 大笑（以上 emotion）
 - `sign-yes` 举✅牌 · `sign-no` 举❌牌（sticker 组第一次有人用）
 - **新的口子**：`states/` 插件（`pose` / `paint` / `palette` / `check` / `segments` / `stickerFrame`，只许画 paper / letter / props / lettering / effects 五层）、`state-check.cjs`（预览和整套检查同一份口径）、`--state <id> --preview`、表情包定帧 `stickerFrame`。
-- **换装**：`outfits/` 两个槽位（帽子、衣服），她 10/13 夜里画的四套照他的身板一格一格重画：飞行帽、贝雷帽、睡帽、风雪帽。`renderVariant(id, i, { outfit })` 才会穿上；不穿时什么都不变。`check-art.cjs --outfit <名字>` 把每一帧都穿上查一遍。
+- **换装**：`outfits/` 两个槽位（帽子、衣服），她 10/13 画的四套照他的身板一格一格重画：飞行帽、贝雷帽、睡帽、风雪帽。`renderVariant(id, i, { outfit })` 才会穿上；不穿时什么都不变。`check-art.cjs --outfit <名字>` 把每一帧都穿上查一遍。
 - **贴纸**：`--stickers` 给每一支量一个只装得下他的正方形，最近邻整数倍放大成 300 / 408 / 618 三档，外加 `stickers/stickers.json`。静图在循环里的，GIF 从静图那一帧起头，缩略图点开不跳。
 - 两轮复审修的（挑要紧的）：求抱抱的两只手从帽子两边挪到贴着身子（原来 30 pt 下像帽子长了犄角）；风雪帽被抬起来时只掀圆顶、毛圈和护耳留在头上（原来脸窗顶上露一条黑带）；捧心的心挪到马甲上（原来像一张嘴）；举✅补了一个亮绿 `signGreen`；举❌的帽檐压到眼皮上，死鱼眼读得出来；举牌那一对让开睡帽的绒球；尴尬流汗的汗挂到帽檐上、按腮的手暗两档；歪头疑惑整个拿掉 `lean`，「歪」交给脚、身子、帽子三层一级一级错开 5。
 - 她拍板的：求抱抱的贴纸只放「抱抱、抱抱」那一下（`sticker` 0–6）；伸懒腰、扶帽致意、蓄力高跳、轻轻蹦四支老动作补了表情包定帧，`static/` 照旧是首帧。

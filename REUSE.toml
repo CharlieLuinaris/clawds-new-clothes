@@ -4,8 +4,10 @@
 version = 1
 
 # 美术：导出的 GIF / PNG / 贴纸、README 用的图 · Artwork: exported images and stickers
+# frames/ 往后那几样是 git 不收、只在 npm run export 出的全量 zip 里的导出件：逐帧图、关键帧拆层、锁屏图、图集和三份 JSON
+# From frames/ on: export-only outputs that are gitignored but ship in the full zip
 [[annotations]]
-path = ["gif/**", "static/**", "sheets/**", "variants/**", "stickers/**", "docs/img/**"]
+path = ["gif/**", "static/**", "sheets/**", "variants/**", "stickers/**", "docs/img/**", "frames/**", "keyframes/**", "parts/**", "lockscreen/**", "keyframes-atlas.png", "manifest.json", "qa-report.json", "anatomy-check.json"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Charlie Luinaris"
 SPDX-License-Identifier = "CC-BY-NC-SA-4.0"
