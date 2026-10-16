@@ -223,6 +223,34 @@ result.notificationLetterVariants=letterHashes.size;
 result.writingLetterVariants=writingHashes.size;
 result.readingPageVariants=readingHashes.size;
 if(result.strapPixelsOutsideClothing||result.coveredEyePixels||result.partialAlphaPixels||result.hatGapPixels||!result.frontRunningTwoEyes||!result.fishingOneEye||result.errorExclamationVariants<3||letterHashes.size!==1||result.writingLetterVariants<12||!result.diceInFirstFrame||!result.typingOneLetterPerPress||!result.readingLetterEveryFrame||!result.stargazingClearOfEyeColumn||!result.phonePropsAndEyes||!result.paintingHeartGrows||result.readingPageVariants<3||!result.eyeSpriteWhitelist||!result.hatAsideWhitelist||!result.dizzyThreeStarsTwoEyes||!result.blushingCheeksShown||!result.tearyTearsShown||!result.poutingEyeAndPuff||!result.lanternLit||!result.pointingFinger||!result.pointingWest||!result.wavingAboveHat||!result.umbrellaDryBody||!result.stretchingHandoff)result.failures.push('Visual invariant check failed');
+// 穿衣服查的时候顺手对一下盘上那一套的整包：衣服包进了 git，就可能悄悄过期——加了一支动作却只跑了 npm run export，gif/<o>/ 会少那一支，
+// npm run check 和换装 zip 都不会响。gif/<o>/、static/<o>/、sheets/<o>/ 的文件名得和 STATES 一一对上，variants/<o>/ 得和基础 variants/ 根上那几张一一对上，
+// stickers/<o>/300/ 每支一张 GIF 一张 PNG，stickers.json 里这一套的条目也得是这几支。哪个目录还没导过（画到一半的新衣服）就不查那一个；
+// 四个整包目录有的在有的不在，算导了一半。只比文件名，不比像素：名字没变、画法变了（改了 motion 却没重出）这里查不出来，换装 zip 那一步会再对帧数和延时。
+// 不穿衣服跑的时候这一段整个不走，anatomy-check.json 一个字节不变
+if(OUTFIT){
+ const ids=STATES.map(s=>s.id),stale=[];
+ const list=dir=>{try{return fs.readdirSync(`${__dirname}/${dir}`).filter(f=>!f.startsWith('.')).sort();}catch(e){if(e.code==='ENOENT')return null;throw e;}};
+ const compare=(dir,expected)=>{const got=list(dir);if(got===null)return null;const want=[...expected].sort(),missing=want.filter(f=>!got.includes(f)),extra=got.filter(f=>!want.includes(f));
+  const show=(word,files)=>files.length?`${word} ${files.length} 个（${files.slice(0,3).join('、')}${files.length>3?' …':''}）`:'';
+  if(missing.length||extra.length)stale.push(`${dir}/ ${[show('少了',missing),show('多了',extra)].filter(Boolean).join('、')}`);
+  return !missing.length&&!extra.length;};
+ const pack={
+  gif:compare(`gif/${OUTFIT}`,ids.map(id=>`clawd-${id}.gif`)),
+  static:compare(`static/${OUTFIT}`,ids.map(id=>`clawd-${id}.png`)),
+  sheets:compare(`sheets/${OUTFIT}`,ids.map(id=>`${id}-keyframes.png`)),
+  variants:compare(`variants/${OUTFIT}`,(list('variants')||[]).filter(f=>/^clawd-.+\.(gif|png)$/.test(f))),
+  stickers300:compare(`stickers/${OUTFIT}/300`,ids.flatMap(id=>[`clawd-${id}.gif`,`clawd-${id}.png`]))
+ };
+ const dirs=['gif','static','sheets','variants'].map(k=>pack[k]);
+ if(dirs.some(v=>v!==null)&&dirs.some(v=>v===null))stale.push(`整包四个目录只有 ${['gif','static','sheets','variants'].filter(k=>pack[k]!==null).join('、')} 在，像是导了一半`);
+ let index=null;try{index=JSON.parse(fs.readFileSync(`${__dirname}/stickers/stickers.json`,'utf8'));}catch(e){if(e.code!=='ENOENT')throw e;}
+ const indexed=(index?.stickers||[]).filter(s=>s.outfit===OUTFIT).map(s=>s.id).sort();
+ pack.stickerIndex=pack.stickers300===null&&!indexed.length?null:JSON.stringify(indexed)===JSON.stringify([...ids].sort());
+ if(pack.stickerIndex===false)stale.push(`stickers/stickers.json 里 ${OUTFIT} 有 ${indexed.length} 条，STATES 有 ${ids.length} 支`);
+ result.pack=pack;
+ for(const s of stale)result.failures.push(`${OUTFIT} 整包旧了：${s}——先 npm run export:outfits`);
+}
 if(!OUTFIT)fs.writeFileSync(`${__dirname}/anatomy-check.json`,JSON.stringify(result,null,2)+'\n');
 console.log(JSON.stringify({...(OUTFIT?{outfit:OUTFIT}:{}),...result,perState:undefined}));
 if(result.failures.length)process.exitCode=1;

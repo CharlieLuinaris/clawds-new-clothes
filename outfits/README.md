@@ -188,8 +188,8 @@ npm run export:outfits           # 四套整包 + 四套贴纸 + 换装 zip
 - 开头先把这一套的四个旧目录（`gif/<名字>/`、`static/<名字>/`、`sheets/<名字>/`、`variants/<名字>/`）和 `manifest-<名字>.json` 清掉再重出，删掉的动作不留旧图。
 - 不碰基础那 48 支：`gif/clawd-*.gif`、`static/clawd-*.png`、`manifest.json`、全量 zip 一个字节不动；全量 zip 也不带衣服包。
 - 贴纸另走一步：`node export.cjs --stickers --outfit <名字>`（`npm run stickers -- --outfit <名字>`），存到 `stickers/<名字>/{300,408,618}/`，索引还是那一份 `stickers/stickers.json`，按 `outfit` 字段分。
-- `manifest-<名字>.json` 不进 git。`npm run export:outfits` 最后一步 `--package-outfits` 把四套打成 `clawds-new-clothes-outfits-v1.0.0.zip`，给 Release 附的那一份；换装 zip 不带贴纸。
-- 衣服包进了 git：加一支动作、改一笔衣服，记得重跑 `npm run export:outfits`，不然 `gif/<名字>/` 会少那一支、旧的那几张也不跟着变。
+- `manifest-<名字>.json` 不进 git。`npm run export:outfits` 最后一步 `--package-outfits` 把四套打成 `clawds-new-clothes-outfits-v<版本>.zip`，从下一版起附在 Release 上（v1.0.0 那一版的附件里还没有）；换装 zip 不带贴纸，`manifest-<名字>.json` 里 `stickers` 那一节写着 `inArchive: false` 和去哪拿。
+- 衣服包进了 git：加一支动作、改一笔衣服，记得重跑 `npm run export:outfits`，不然 `gif/<名字>/` 会少那一支、旧的那几张也不跟着变。有两道闸：`node check-art.cjs --outfit <名字>` 会对盘上那一套的文件名（`gif/`、`static/`、`sheets/`、`variants/`、`stickers/<名字>/300/` 和 `stickers.json` 里这一套的条目），少一支多一支都不过；`--package-outfits` 打包前再拿 `manifest-<名字>.json` 和引擎对一遍动作、帧数、延时、关键帧和每支 GIF 的帧数。同样帧数里改了画法，两道闸都查不出来，得自己记得重出。
 
 ## 总表：她画的和他穿上的对着看
 

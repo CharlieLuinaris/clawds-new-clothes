@@ -189,8 +189,11 @@ Same spec as the base set: 300 × 300, 1-bit transparency, 70 / 60 / 70 ms, loop
 </picture>
 ```
 
-The base set stays byte-identical, and the full zip carries no outfit packs: they ship separately as `clawds-new-clothes-outfits-v1.0.0.zip` on the Release. `manifest-<outfit>.json` is not committed; it is in that zip.
-基础那套一个字节不动，全量 zip 也不带衣服包：换装另打一个 `clawds-new-clothes-outfits-v1.0.0.zip` 附在 Release 上。`manifest-<衣服>.json` 不进 git，在那个 zip 里。
+`npm run check:outfits` also checks that the committed packs list every move: add a move, and it fails until you rerun `npm run export:outfits`.
+`npm run check:outfits` 顺手对一下仓库里的整包是不是 48 支都在：加了一支动作，没重跑 `npm run export:outfits` 它就不过。
+
+The base set stays byte-identical, and the full zip carries no outfit packs. `npm run export:outfits` builds them into a separate `clawds-new-clothes-outfits-v<version>.zip`, to be attached from the next Release on (the v1.0.0 Release does not have it). `manifest-<outfit>.json` is not committed; it is in that zip. The outfits zip carries no stickers: take them from `stickers/<outfit>/`.
+基础那套一个字节不动，全量 zip 也不带衣服包。`npm run export:outfits` 另打一个换装 zip `clawds-new-clothes-outfits-v<版本>.zip`，从下一版起附在 Release 上（v1.0.0 那一版还没有）。`manifest-<衣服>.json` 不进 git，在那个 zip 里；换装 zip 不带贴纸，贴纸去 `stickers/<衣服>/` 拿。
 
 ## 文件 · What's in here
 
@@ -200,7 +203,7 @@ The base set stays byte-identical, and the full zip carries no outfit packs: the
 | `stickers/300/` · `stickers/stickers.json` | square, centered stickers and their index · 裁好居中的贴纸和索引 |
 | `sheets/<id>-keyframes.png` | one row of keyframes per move · 每支一行关键帧 |
 | `variants/clawd-pointing-west.*` | pointing west, left hand, bag still on the right · 朝西的指路（包不换边） |
-| `gif/<outfit>/` · `static/<outfit>/` · `stickers/<outfit>/300/` | the same 48 moves wearing each outfit · 四套衣服各一整包 |
+| `gif/<outfit>/` · `static/<outfit>/` · `sheets/<outfit>/` · `variants/<outfit>/` · `stickers/<outfit>/300/` | the same 48 moves wearing each outfit · 四套衣服各一整包 |
 | `motion.cjs` · `engine.cjs` | timing and poses · painting layer by layer · 节奏与姿势、按图层画像素 |
 | `export.cjs` · `check-art.cjs` · `state-check.cjs` | export, stickers, previews · whole-pack checks · per-move checks |
 | `states/` · `outfits/` | one file per new move · one file per outfit, each with a template |

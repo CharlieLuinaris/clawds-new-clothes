@@ -300,7 +300,7 @@ async function packageAll() {
       // 本目录里解开的旧包（比如有人把 v7 的 zip 解在这里看）不进新包，不然 v8 的包里会整个套着一份 v7；解开的换装 zip 同理
       if (!prefix && entry.isDirectory() && (/^clawd-london-expressions-v\d+$/.test(entry.name) || entry.name.startsWith(`${PKG.name}-v`) || entry.name.startsWith(`${PKG.name}-outfits-v`))) continue;
       // 换装整包不进全量 zip：gif/<o>/、static/<o>/、sheets/<o>/、variants/<o>/ 和根上的 manifest-<o>.json 是 --outfit <name> 出的，
-      // 打进来的话这个包有多大、带哪几套，全看这台电脑上跑没跑过换装；要衣服的去拿 --package-outfits 打的换装 zip（Release 附件里有）。
+      // 打进来的话这个包有多大、带哪几套，全看这台电脑上跑没跑过换装；要衣服的去拿 --package-outfits 打的换装 zip（随下一版 Release 附上；v1.0.0 那一版的附件里还没有）。
       // 基础那套在这几个目录里一个子目录都没有（variants/ 只有基础那支的逐帧目录），所以全量 zip 的条目表一条不变
       if (['gif', 'static', 'sheets'].includes(prefix) && entry.isDirectory()) continue;
       if (prefix === 'variants' && entry.isDirectory() && !VARIANTS.some(variant => variant.id === entry.name)) continue;
@@ -424,8 +424,12 @@ async function exportOutfit(name) {
     outfit: { id: name, label, module: `outfits/${name}.cjs`, hideBag: !!mod.hideBag, hideWatch: !!mod.hideWatch, palette: mod.palette || {} },
     canvas: { width: W, height: H }, alpha: { bitDepth: 1, values: [0, 255] }, loop: 0,
     timing: { delayPatternMs: [70, 60, 70], staticPolicy: 'Always use animation frame 0 for reduced motion and low power.' },
-    // stickers/<o>/ 由 --stickers --outfit <o> 出：只跑了这一步的话，那个目录可能还不在
-    paths: { gif: `gif/${name}`, static: `static/${name}`, sheets: `sheets/${name}`, variants: `variants/${name}`, stickers: `stickers/${name}`, archive: OUTFIT_ARCHIVE },
+    // paths 只写换装 zip 里真有的目录：这份 manifest 是跟着换装 zip 发出去的，接入方照 paths 去加载不能落空
+    paths: { gif: `gif/${name}`, static: `static/${name}`, sheets: `sheets/${name}`, variants: `variants/${name}`, archive: OUTFIT_ARCHIVE },
+    // 贴纸不在换装 zip 里（为什么见 packageOutfits），单独一节说清楚去哪拿；inArchive: false 就是「别在包里找」。
+    // 不写「已经进 git」：进不进 git 是仓库的事，这份索引只说包里有没有
+    stickers: { inArchive: false, path: `stickers/${name}`, index: 'stickers/stickers.json',
+      note: `Not in the outfits zip. Take them from stickers/${name}/ in the repository (indexed by the entries of stickers/stickers.json whose outfit is "${name}"), or run node export.cjs --stickers --outfit ${name}.` },
     // 分组和 exportAll 同一个算法：老的三组照排，prop / sticker 只在真有一支用它时才出现
     groups: [
       { id: 'core', label: '日常动作', stateIds: STATES.filter(state => groupOf(state) === 'core').map(state => state.id) },
@@ -498,7 +502,9 @@ async function exportOutfit(name) {
 // 换装 zip（--package-outfits）：四套整包打成一个 clawds-new-clothes-outfits-v<版本>.zip，给 Release 附的那一份。
 // 衣服名单从 outfits/*.cjs 读（_ 开头的草稿不算）：包里有什么由仓库决定，不由这台电脑上跑过哪几套决定，哪套缺 manifest-<o>.json 就停下。
 // 基础那个全量 zip 是先打包、后盖章（包里的图没有署名，老问题，另开一单）；这里反过来，先 stampTree 这几个目录（盖过的跳过）再打包。
-// 不带 stickers/：和全量 zip 不带它是同一个理由——618 那档在不在，全看这台电脑跑没跑过 --stickers。
+// 不带 stickers/：和全量 zip 不带它是同一个理由——618 那档在不在，全看这台电脑跑没跑过 --stickers；manifest-<o>.json 的 stickers 那一节写着 inArchive: false。
+// 衣服包进了 git 就可能悄悄过期（加了一支动作、改了 motion / engine，却只跑了 npm run export）：打包前拿每份 manifest-<o>.json 和眼下的 STATES、VARIANTS 对一遍，
+// 再看盘上每支 GIF 的帧数，对不上就停，提示先 npm run export:outfits。只对得出「少了一支、帧数 / 延时 / 关键帧变了」，同样帧数里画法变了这里查不出来
 async function packageOutfits({ stamp = true } = {}) {
   const names = (await fs.readdir(path.join(OUT, 'outfits'))).filter(file => file.endsWith('.cjs') && !file.startsWith('_')).map(file => file.slice(0, -'.cjs'.length)).sort();
   if (!names.length) throw new Error('outfits/ 里没有衣服：换装 zip 没东西可打');
@@ -506,6 +512,27 @@ async function packageOutfits({ stamp = true } = {}) {
   for (const name of names) {
     try { manifests[name] = JSON.parse(await fs.readFile(path.join(OUT, `manifest-${name}.json`), 'utf8')); }
     catch (error) { if (error.code === 'ENOENT') throw new Error(`换装 zip 少了 ${name}：先 npm run export:outfit -- ${name}`); throw error; }
+  }
+  // 过期闸：id 和顺序、每支的帧数 / 逐帧延时 / 关键帧、变体、totals，一样对不上就停——在盖章、打包之前，停下来一个文件都不动
+  const { STATES } = require('./engine.cjs');
+  const expectedIds = STATES.map(state => state.id), expectedVariants = VARIANTS.map(variant => variant.id);
+  const expectedTotals = { states: STATES.length, frames: STATES.reduce((n, state) => n + state.frames, 0), keyframes: STATES.reduce((n, state) => n + state.keyframes.length, 0) };
+  const same = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+  for (const name of names) {
+    const listedStates = manifests[name].states || [], ids = listedStates.map(s => s.id), stale = [];
+    if (!same(ids, expectedIds)) {
+      const missing = expectedIds.filter(id => !ids.includes(id)), extra = ids.filter(id => !expectedIds.includes(id));
+      const diff = [missing.length ? `少了 ${missing.join('、')}` : '', extra.length ? `多了 ${extra.join('、')}` : ''].filter(Boolean);
+      stale.push(diff.length ? `动作对不上（${diff.join('，')}）` : '动作的顺序和 STATES 不一样');
+    }
+    for (const state of STATES) {
+      const listed = listedStates.find(s => s.id === state.id);
+      if (listed && (listed.frameCount !== state.frames || !same(listed.delaysMs, state.delays || delaysFor(state.frames)) || !same(listed.keyframeIndices, state.keyframes)))
+        stale.push(`${state.id} 的帧数 / 延时 / 关键帧和引擎对不上`);
+    }
+    if (!same((manifests[name].variants || []).map(v => v.id), expectedVariants)) stale.push('变体对不上');
+    if (!same(manifests[name].totals, expectedTotals)) stale.push(`totals 记的是 ${JSON.stringify(manifests[name].totals)}，引擎眼下是 ${JSON.stringify(expectedTotals)}`);
+    if (stale.length) throw new Error(`manifest-${name}.json 旧了：${stale.slice(0, 3).join('；')}${stale.length > 3 ? ` 等 ${stale.length} 条` : ''}——先 npm run export:outfits`);
   }
   const exists = require('node:fs').existsSync;
   if (stamp) {
@@ -534,6 +561,11 @@ async function packageOutfits({ stamp = true } = {}) {
     const listed = [...manifests[name].states.flatMap(s => [s.gif, s.static, s.keyframeSheet.path]), ...(manifests[name].variants || []).flatMap(v => [v.gif, v.static])];
     const missing = listed.filter(file => !present.has(file));
     if (missing.length) throw new Error(`manifest-${name}.json 里写着的 ${missing.slice(0, 3).join('、')}${missing.length > 3 ? ` 等 ${missing.length} 个` : ''}不在盘上：先 npm run export:outfit -- ${name}`);
+    // 图在、索引也新，图却可能是旧的（比如导完又从 git 里拿回了旧图）：每支 GIF 解一下头，帧数得和索引一样
+    for (const item of [...manifests[name].states, ...(manifests[name].variants || [])]) {
+      const pages = (await sharp(path.join(OUT, item.gif), { animated: true }).metadata()).pages || 1;
+      if (pages !== item.frameCount) throw new Error(`${item.gif} 有 ${pages} 帧，manifest-${name}.json 记的是 ${item.frameCount}：图旧了，先 npm run export:outfits`);
+    }
   }
   entries.push('NOTICE', 'LICENSE', 'ATTRIBUTION.md', ...(await fs.readdir(path.join(OUT, 'LICENSES'))).filter(file => !file.startsWith('.')).sort().map(file => `LICENSES/${file}`));
   const zip = new JSZip();

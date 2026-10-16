@@ -17,7 +17,10 @@ variants/pointing-west/
 lockscreen/
 source/
 *.zip
+# 解开的旧包和新包（Finder 双击 zip 会在旁边解出同名目录）：改名前的、全量 zip 的、换装 zip 的，一个都不收
 clawd-london-expressions-v*/
+clawds-new-clothes-v*/
+clawds-new-clothes-outfits-v*/
 
 # 画的时候看的预览（--preview、tools/*.cjs 出的总表），只给画的人自己看
 states/preview/
