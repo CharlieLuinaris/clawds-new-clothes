@@ -70,3 +70,4 @@ Every move, every outfit and every export follows this page.
 ## 可复现 · Reproducible
 
 `npm ci && npm run export && npm run stickers` 在同一套依赖（sharp 0.35.5、jszip 3.10.1）下逐字节重出 `gif/`、`static/`、`sheets/`、`variants/`、`stickers/300/`。全量导出的 zip 每个条目盖同一个固定日期，没改东西重打出来的包也逐字节相同。
+`npm run export:outfits` 同样逐字节重出 `gif/<衣服>/`、`static/<衣服>/`、`sheets/<衣服>/`、`variants/<衣服>/`、`stickers/<衣服>/300/`；换装 zip 也盖同一个固定日期，重打出来逐字节相同。

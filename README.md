@@ -111,12 +111,13 @@ npm run export    # draw all 48 moves · 把 48 支整包画出来
 npm run check     # anatomy & seam checks, exit 0 = pass · 解剖与接缝检查，退出码 0 才算过
 ```
 
-The GIFs, stills and 300 px stickers are already committed, so you can use them without running anything. `npm run export` (and `npm run stickers` for the stickers) rebuilds them byte for byte, plus the large outputs that stay out of git (`frames/`, `keyframes/`, `parts/`, `manifest.json`, the atlas, a full zip).
-GIF、静图和 300 档贴纸已经在仓库里，拿来就能用；`npm run export`（贴纸是 `npm run stickers`）会逐字节重出它们，顺带出不进 git 的大件（逐帧 PNG、关键帧拆层、manifest、图集、全量 zip）。
+The GIFs, stills and 300 px stickers, for the base look and all four outfits, are already committed, so you can use them without running anything. `npm run export` (and `npm run stickers` for the stickers, `npm run export:outfits` for the outfits) rebuilds them byte for byte, plus the large outputs that stay out of git (`frames/`, `keyframes/`, `parts/`, `manifest.json`, the atlas, a full zip).
+GIF、静图和 300 档贴纸，不穿衣服的和四套衣服的，都已经在仓库里，拿来就能用；`npm run export`（贴纸是 `npm run stickers`，衣服是 `npm run export:outfits`）会逐字节重出它们，顺带出不进 git 的大件（逐帧 PNG、关键帧拆层、manifest、图集、全量 zip）。
 
 | | |
 |---|---|
 | `npm run stickers` | after `export`: 300 / 408 / 618 sticker sizes + `stickers/stickers.json` · 先导出，再裁三档贴纸 |
+| `npm run export:outfits` | after `export`: the four outfit packs, their stickers and the outfits zip · 先导出，再出四套换装整包、贴纸和换装 zip |
 | `npm run preview` | prints the link to `preview.html`, a gallery with pause, dark mode and keyframes · 打印预览页的地址 |
 | `npm run check:outfits` | every frame of every move, wearing each of the four outfits · 四套衣服都穿上整套查 |
 | `npm run docs:states` | after `export`: regenerate `docs/states.md` from the manifest · 先导出，再重出动作总表 |
@@ -158,6 +159,39 @@ node check-art.cjs --outfit my-coat           # every frame of every move, weari
 An outfit has a `hat()` drawn in the bowler's 140 × 40 box and a `costume()` drawn where the waistcoat sits. Three rules: the eyes stay visible, the coat is never narrower than the body, the hat sits right on the head. Details in [`outfits/README.md`](outfits/README.md) (Chinese).
 一套衣服就是 `hat()` 和 `costume()` 两样：帽子画在礼帽那个框里，衣服画在马甲的位置。三条铁律：眼睛那一行露着、衣服不比身子窄、帽子不离头。细节在 [`outfits/README.md`](outfits/README.md)。
 
+## 换装整包 · Outfit packs
+
+每套衣服都有一整包：48 支动作和朝西的指路全穿上那件，目录、文件名照基础那套，只往下多一层衣服名。
+Each outfit has a full pack: all 48 moves and the west-facing pointing variant wearing it, laid out like the base set with one more folder for the outfit name.
+
+```sh
+npm run export                  # the base set first, the stickers read its manifest · 先出基础那套，贴纸要读它的 manifest
+npm run export:outfits          # all four packs, their stickers and the outfits zip · 四套整包、四套贴纸和换装 zip
+npm run export:outfit -- beret  # one pack only · 只出一套
+```
+
+| | |
+|---|---|
+| `gif/<outfit>/clawd-<id>.gif` | 48 looping GIFs · 48 支循环 GIF |
+| `static/<outfit>/clawd-<id>.png` | their first frames · 首帧静图 |
+| `sheets/<outfit>/<id>-keyframes.png` | one row of keyframes per move · 每支一行关键帧 |
+| `variants/<outfit>/clawd-pointing-west.*` | pointing west, dressed · 朝西的指路穿上衣服 |
+| `stickers/<outfit>/` | the same three sticker sizes, 300 committed · 同样三档贴纸，进 git 的是 300 |
+| `manifest-<outfit>.json` | the index, keys mean what they mean in `manifest.json` · 索引，键名和 manifest.json 同义 |
+
+Same spec as the base set: 300 × 300, 1-bit transparency, 70 / 60 / 70 ms, looping forever, first frame = still.
+规格和基础那套是同一份：300 × 300、1 位透明、70 / 60 / 70 ms、无限循环、首帧就是静图。
+
+```html
+<picture>
+  <source srcset="static/beret/clawd-waving.png" media="(prefers-reduced-motion: reduce)">
+  <img src="gif/beret/clawd-waving.gif" width="150" height="150" alt="Clawd waving, wearing the beret">
+</picture>
+```
+
+The base set stays byte-identical, and the full zip carries no outfit packs: they ship separately as `clawds-new-clothes-outfits-v1.0.0.zip` on the Release. `manifest-<outfit>.json` is not committed; it is in that zip.
+基础那套一个字节不动，全量 zip 也不带衣服包：换装另打一个 `clawds-new-clothes-outfits-v1.0.0.zip` 附在 Release 上。`manifest-<衣服>.json` 不进 git，在那个 zip 里。
+
 ## 文件 · What's in here
 
 | | |
@@ -166,6 +200,7 @@ An outfit has a `hat()` drawn in the bowler's 140 × 40 box and a `costume()` dr
 | `stickers/300/` · `stickers/stickers.json` | square, centered stickers and their index · 裁好居中的贴纸和索引 |
 | `sheets/<id>-keyframes.png` | one row of keyframes per move · 每支一行关键帧 |
 | `variants/clawd-pointing-west.*` | pointing west, left hand, bag still on the right · 朝西的指路（包不换边） |
+| `gif/<outfit>/` · `static/<outfit>/` · `stickers/<outfit>/300/` | the same 48 moves wearing each outfit · 四套衣服各一整包 |
 | `motion.cjs` · `engine.cjs` | timing and poses · painting layer by layer · 节奏与姿势、按图层画像素 |
 | `export.cjs` · `check-art.cjs` · `state-check.cjs` | export, stickers, previews · whole-pack checks · per-move checks |
 | `states/` · `outfits/` | one file per new move · one file per outfit, each with a template |

@@ -21,6 +21,8 @@
   "scripts": {
     "export": "node export.cjs",
     "stickers": "node export.cjs --stickers",
+    "export:outfit": "node export.cjs --outfit",
+    "export:outfits": "node export.cjs --outfit aviator && node export.cjs --outfit beret && node export.cjs --outfit nightcap && node export.cjs --outfit winter-fur && node export.cjs --stickers --outfit aviator && node export.cjs --stickers --outfit beret && node export.cjs --stickers --outfit nightcap && node export.cjs --stickers --outfit winter-fur && node export.cjs --package-outfits",
     "check": "node check-art.cjs",
     "check:outfits": "node check-art.cjs --outfit aviator && node check-art.cjs --outfit beret && node check-art.cjs --outfit nightcap && node check-art.cjs --outfit winter-fur",
     "preview": "node -e \"console.log(require('node:url').pathToFileURL(require('node:path').resolve('preview.html')).href)\"",

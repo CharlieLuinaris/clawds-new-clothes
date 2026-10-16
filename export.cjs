@@ -7,6 +7,7 @@
 // Export the immutable component renderer without changing any source assets.
 // Usage: node export.cjs | node export.cjs --package-only | node export.cjs --outfit beret --preview | node export.cjs --state <id> --preview [--outfit beret]
 //        node export.cjs --stickers [--outfit beret] [--state <id>]
+//        node export.cjs --outfit <name>（这一套衣服的整包）| node export.cjs --package-outfits（四套打成换装 zip）
 const fs = require('node:fs/promises');
 const path = require('node:path');
 const crypto = require('node:crypto');
@@ -18,6 +19,8 @@ const OUT = __dirname;
 const W = 300, H = 300, BYTES = W * H * 4;
 // 全量导出的包名跟着 package.json 走：仓库改名、升版本只改那一处
 const ARCHIVE = `${PKG.name}-v${PKG.version}.zip`;
+// 换装 zip 另起一个名字（--package-outfits 打，给 Release 附的那一份）；四套衣服的整包不进上面那个全量 zip
+const OUTFIT_ARCHIVE = `${PKG.name}-outfits-v${PKG.version}.zip`;
 const LOCOMOTION_IDS = new Set(['strolling', 'running', 'sprinting', 'hopping', 'jumping', 'leaping', 'front-running']);
 // v8 起分三组：情绪这 4 个单独一组，其余照旧——老动作一个都不挪组，v8 的四个道具动作、v9 的五个新动作都落在 core
 const EMOTION_IDS = new Set(['dizzy', 'blushing', 'teary', 'pouting']);
@@ -294,8 +297,14 @@ async function packageAll() {
   async function addDirectory(directory, prefix = '') {
     for (const entry of (await fs.readdir(directory, { withFileTypes: true })).sort((a, b) => a.name.localeCompare(b.name))) {
       if (entry.name.startsWith('.') || entry.name.endsWith('.zip') || entry.name.endsWith('.log')) continue;
-      // 本目录里解开的旧包（比如有人把 v7 的 zip 解在这里看）不进新包，不然 v8 的包里会整个套着一份 v7
-      if (!prefix && entry.isDirectory() && (/^clawd-london-expressions-v\d+$/.test(entry.name) || entry.name.startsWith(`${PKG.name}-v`))) continue;
+      // 本目录里解开的旧包（比如有人把 v7 的 zip 解在这里看）不进新包，不然 v8 的包里会整个套着一份 v7；解开的换装 zip 同理
+      if (!prefix && entry.isDirectory() && (/^clawd-london-expressions-v\d+$/.test(entry.name) || entry.name.startsWith(`${PKG.name}-v`) || entry.name.startsWith(`${PKG.name}-outfits-v`))) continue;
+      // 换装整包不进全量 zip：gif/<o>/、static/<o>/、sheets/<o>/、variants/<o>/ 和根上的 manifest-<o>.json 是 --outfit <name> 出的，
+      // 打进来的话这个包有多大、带哪几套，全看这台电脑上跑没跑过换装；要衣服的去拿 --package-outfits 打的换装 zip（Release 附件里有）。
+      // 基础那套在这几个目录里一个子目录都没有（variants/ 只有基础那支的逐帧目录），所以全量 zip 的条目表一条不变
+      if (['gif', 'static', 'sheets'].includes(prefix) && entry.isDirectory()) continue;
+      if (prefix === 'variants' && entry.isDirectory() && !VARIANTS.some(variant => variant.id === entry.name)) continue;
+      if (!prefix && /^manifest-.+\.json$/.test(entry.name)) continue;
       // node_modules 是 npm ci 装的依赖，不是素材，也不进包
       if (!prefix && entry.isDirectory() && entry.name === 'node_modules') continue;
       // 换装的工作台（outfits/：衣服模块和预览图）和试穿脚本（tools/）是画的人自己用的，不是给接入方的素材，也不进包
@@ -318,7 +327,7 @@ async function packageAll() {
   console.log(`Packaged ${Object.keys(zip.files).length} entries (${archive.length} bytes): ${ARCHIVE}`);
 }
 
-// 换装预览：画衣服的人改一笔就想看一眼穿上什么样，用不着把 40 态 1851 帧整包重出一遍（也不该：换装不进正式的包）。
+// 换装预览：画衣服的人改一笔就想看一眼穿上什么样，用不着把 40 态 1851 帧整包重出一遍（整包另走 --outfit <name>，也不进全量 zip）。
 // 挑五帧——待机首帧（就是静图）、走路第 10 帧（侧身、单眼、身子前倾）、睡着首帧（帽子躺地上半大、睡姿的身子）、
 // 挥手第 20 帧（手举过帽顶）、被抱起来首帧（帽子横挪 10、眼睛往上看）——各存一张 PNG 到 outfits/preview/<name>-<state>.png，
 // 待机再存一张最近邻放大 3 倍的 <name>-idle-x3.png 看像素；不碰 frames/gif/static，不打包。
@@ -358,6 +367,182 @@ async function previewOutfit(name) {
   }
   console.log(JSON.stringify(report, null, 2));
   if (report.problems.length) process.exitCode = 1;
+}
+
+// 换装整包（--outfit <name>，不带 --preview）：这一套衣服穿在 48 支动作和朝西的指路上，接入方拿去就能换衣服用。
+// 目录、文件名全照基础那套，只往下多一层衣服名：gif/<o>/clawd-<id>.gif、static/<o>/clawd-<id>.png（第 0 帧，不取 stickerFrame）、
+// sheets/<o>/<id>-keyframes.png（关键帧表）、variants/<o>/clawd-pointing-west.gif|png，根上再放一份 manifest-<o>.json。
+// 规格和基础那套是同一份：300×300、1 位透明、70/60/70、无限循环；GIF 和 exportAll 一字不差的一组参数、同一套核对，
+// 外加一条 exportAll 没查的：静图 PNG 解回来要和 GIF 第 0 帧逐像素相同（和 previewState 同口径）。
+// 不出 frames/、keyframes/、parts/、锁屏、图集、qa-report：太大，接入方只要 GIF 和静图；播放表 <id>-frames.png 基础那套本来就不进 git，这里也不出。
+// 不去参数化 exportAll：那边要写十来样只属于基础的东西，传个 outfit 进去就得加十几个 if，每一个都可能把衣服写进基础路径，
+// sha 对比只能事后发现；拆成两个函数，衣服从结构上就碰不到 gif/clawd-*.gif、manifest.json 和全量 zip。代价是逐帧那一圈抄了一份，贴纸和新动作预览也是这么抄的。
+// manifest-<o>.json 每次整份重写，不读、不合并别的文件，只取决于引擎和这件衣服，逐字节能重出；不写 sha256：
+// 收尾 stampOutputs 往图里盖署名，导出时算的 hash 和盘上的对不上（基础 qa-report.json 里的 gifSHA256 现在就是这样）
+const OUTFIT_DIRS = ['gif', 'static', 'sheets', 'variants'];
+// 编 GIF、出静图、整套核对：尺寸、帧数、无限循环、逐帧延时、GIF 和静图都只有 0 / 255 两种 alpha、每帧 = 原渲染、静图 = GIF 第 0 帧。哪条不过就 throw，文件一张都不写
+async function encodeOutfitGif(buffers, delays, label) {
+  const frames = buffers.length;
+  const gif = await sharp(Buffer.concat(buffers), { raw: { width: W, height: H * frames, channels: 4, pageHeight: H } })
+    .gif({ keepDuplicateFrames: true, loop: 0, delay: delays, colours: 64, dither: 0, effort: 7, interFrameMaxError: 0, interPaletteMaxError: 0 }).toBuffer();
+  const staticPNG = await png(buffers[0]);
+  const metadata = await sharp(gif, { animated: true }).metadata();
+  const decoded = await sharp(gif, { animated: true }).ensureAlpha().raw().toBuffer();
+  const staticDecoded = await sharp(staticPNG).ensureAlpha().raw().toBuffer();
+  const binaryAlpha = data => { for (let p = 3; p < data.length; p += 4) if (data[p] !== 0 && data[p] !== 255) return false; return true; };
+  const mismatchedFrames = [];
+  for (let frame = 0; frame < frames; frame++) if (!equalVisible(buffers[frame], decoded.subarray(frame * BYTES, (frame + 1) * BYTES))) mismatchedFrames.push(frame);
+  const check = { width: metadata.width, pageHeight: metadata.pageHeight || metadata.height, frames: metadata.pages || 1, expectedFrames: frames, loop: metadata.loop,
+    delaysMatch: JSON.stringify(metadata.delay) === JSON.stringify(delays), gifAlphaValid: binaryAlpha(decoded), staticAlphaValid: binaryAlpha(staticDecoded), mismatchedFrames,
+    firstFrameMatchesStaticPNG: staticDecoded.length === BYTES && equalVisible(staticDecoded, decoded.subarray(0, BYTES)) };
+  if (check.width !== W || check.pageHeight !== H || check.frames !== frames || check.loop !== 0 || !check.delaysMatch || !check.gifAlphaValid || !check.staticAlphaValid
+    || mismatchedFrames.length || !check.firstFrameMatchesStaticPNG) throw new Error(`${label}: GIF verification failed ${JSON.stringify(check)}`);
+  return { gif, staticPNG };
+}
+async function exportOutfit(name) {
+  // 两道名字闸都写在清旧包前面：过不了，下面那几个 rm 一个都不跑
+  if (typeof name !== 'string' || !/^[a-z][a-z0-9_-]*$/.test(name))
+    throw new Error(`衣服名 ${name} 出不了整包：只认 outfits/ 里小写字母开头的（小写字母、数字、- 和 _）；_ 开头的是草稿，只出预览：--outfit ${name} --preview`);
+  // variants/<变体 id>/ 是基础那支朝西指路的逐帧目录：衣服要是也叫 pointing-west，清旧包那一步会把它整个删掉
+  if (VARIANTS.some(variant => variant.id === name)) throw new Error(`衣服不能叫 ${name}：variants/${name}/ 是基础那支变体的逐帧目录，换个名字`);
+  const engine = require('./engine.cjs');
+  const { STATES, render } = engine, { GROUPS } = require('./motion.cjs');
+  if (!Array.isArray(STATES) || STATES.length === 0) throw new Error('Expected at least one state');
+  // 先试穿一帧：模块不在、补色和老色撞名的话，在动任何文件之前就停下
+  render('idle', 0, { outfit: name });
+  // 和引擎 require 的是同一个文件、同一份缓存（engine.cjs 也住在 OUT）
+  const mod = require(path.join(OUT, 'outfits', `${name}.cjs`)), label = mod.label || name;
+  // 整套重出：先把这一套的四个旧目录和旧索引清掉，删掉的动作不留旧图。只清 <目录>/<衣服名> 这一层，基础那 48 支和别的衣服碰不到
+  for (const dir of OUTFIT_DIRS) {
+    const target = path.join(OUT, dir, name);
+    if (path.dirname(target) !== path.join(OUT, dir)) throw new Error(`${target} 不在 ${dir}/ 下面一层，不清`);
+    await fs.rm(target, { recursive: true, force: true });
+  }
+  await fs.rm(path.join(OUT, `manifest-${name}.json`), { force: true });
+  const manifest = {
+    version: 9, name: `老伦敦信差 Clawd · ${label}`, generatedBy: `node export.cjs --outfit ${name}`, base: 'manifest.json',
+    outfit: { id: name, label, module: `outfits/${name}.cjs`, hideBag: !!mod.hideBag, hideWatch: !!mod.hideWatch, palette: mod.palette || {} },
+    canvas: { width: W, height: H }, alpha: { bitDepth: 1, values: [0, 255] }, loop: 0,
+    timing: { delayPatternMs: [70, 60, 70], staticPolicy: 'Always use animation frame 0 for reduced motion and low power.' },
+    // stickers/<o>/ 由 --stickers --outfit <o> 出：只跑了这一步的话，那个目录可能还不在
+    paths: { gif: `gif/${name}`, static: `static/${name}`, sheets: `sheets/${name}`, variants: `variants/${name}`, stickers: `stickers/${name}`, archive: OUTFIT_ARCHIVE },
+    // 分组和 exportAll 同一个算法：老的三组照排，prop / sticker 只在真有一支用它时才出现
+    groups: [
+      { id: 'core', label: '日常动作', stateIds: STATES.filter(state => groupOf(state) === 'core').map(state => state.id) },
+      { id: 'locomotion', label: '走跑跳', stateIds: STATES.filter(state => groupOf(state) === 'locomotion').map(state => state.id) },
+      { id: 'emotion', label: '情绪', stateIds: STATES.filter(state => groupOf(state) === 'emotion').map(state => state.id) },
+      ...Object.entries(GROUPS).filter(([id]) => !BASE_GROUPS.includes(id) && STATES.some(state => groupOf(state) === id))
+        .map(([id, groupLabel]) => ({ id, label: groupLabel, stateIds: STATES.filter(state => groupOf(state) === id).map(state => state.id) }))
+    ],
+    states: []
+  };
+  let totalFrames = 0, totalKeyframes = 0;
+  for (const state of STATES) {
+    const id = state.id, selected = state.keyframes;
+    if (!/^[a-z-]+$/.test(id) || !Number.isInteger(state.frames) || state.frames < 2) throw new Error(`Invalid state ${id}`);
+    if (!Array.isArray(selected) || selected.length < 2 || selected.length > 8 || selected[0] !== 0 || new Set(selected).size !== selected.length || selected.some(i => !Number.isInteger(i) || i < 0 || i >= state.frames)) throw new Error(`${id}: invalid keyframe indices`);
+    if (state.delays && (state.delays.length !== state.frames || state.delays.some(d => !Number.isInteger(d) || d <= 0 || d % 10))) throw new Error(`${id}: delays must have ${state.frames} entries, each a positive multiple of 10ms`);
+    const delays = state.delays || delaysFor(state.frames), buffers = [];
+    for (let frame = 0; frame < state.frames; frame++) {
+      const { pixels } = render(id, frame, { outfit: name });
+      validatePixels(pixels, `${name}/${id}/${frame}`);
+      buffers.push(pixels);
+    }
+    const { gif, staticPNG } = await encodeOutfitGif(buffers, delays, `${name}/${id}`);
+    const gifPath = `gif/${name}/clawd-${id}.gif`, staticPath = `static/${name}/clawd-${id}.png`, keySheetPath = `sheets/${name}/${id}-keyframes.png`;
+    const keySheet = makeSheet(selected.map(frame => buffers[frame]), selected.length);
+    await save(gifPath, gif);
+    await save(staticPath, staticPNG);
+    await save(keySheetPath, await png(keySheet.data, keySheet.width, keySheet.height));
+    const totalMs = delays.reduce((a, b) => a + b, 0);
+    // 键名和基础 manifest 里同名的键一个意思；frames、keyframes、poseMetadata、sheet 指的那些文件衣服版不出，就不写
+    manifest.states.push({
+      id, label: state.label, group: groupOf(state), frameCount: state.frames, keyframeCount: selected.length,
+      durationMs: totalMs, delaysMs: delays, loop: 0, keyframeIndices: selected,
+      ...(state.segments ? { segments: state.segments.map(seg => ({ ...seg, frameCount: seg.to - seg.from + 1, durationMs: delays.slice(seg.from, seg.to + 1).reduce((a, b) => a + b, 0) })) } : {}),
+      ...(state.handoff ? { handoff: state.handoff } : {}),
+      ...(state.stickerFrame !== undefined ? { stickerFrame: state.stickerFrame } : {}),
+      gif: gifPath, static: staticPath, png: staticPath,
+      keyframeSheet: { path: keySheetPath, columns: selected.length, rows: 1, width: keySheet.width, height: keySheet.height }
+    });
+    totalFrames += state.frames; totalKeyframes += selected.length;
+    console.log(`Exported ${name}/${id}: ${state.frames} frames / ${selected.length} keyframes / ${totalMs}ms`);
+  }
+  manifest.variants = [];
+  for (const variant of VARIANTS) {
+    const base = STATES.find(state => state.id === variant.of);
+    if (!base || !/^[a-z-]+$/.test(variant.id) || STATES.some(state => state.id === variant.id)) throw new Error(`Invalid variant ${variant.id}`);
+    const delays = base.delays || delaysFor(base.frames), buffers = [];
+    for (let frame = 0; frame < base.frames; frame++) {
+      const { pixels } = render(variant.of, frame, { ...variant.override, outfit: name });
+      validatePixels(pixels, `${name}/${variant.id}/${frame}`);
+      buffers.push(pixels);
+    }
+    // 同一组参数、同一套核对；不出逐帧目录，不出 poses.json
+    const { gif, staticPNG } = await encodeOutfitGif(buffers, delays, `${name}/${variant.id}`);
+    const gifPath = `variants/${name}/clawd-${variant.id}.gif`, staticPath = `variants/${name}/clawd-${variant.id}.png`;
+    await save(gifPath, gif);
+    await save(staticPath, staticPNG);
+    const totalMs = delays.reduce((a, b) => a + b, 0);
+    manifest.variants.push({ id: variant.id, of: variant.of, label: variant.label, override: variant.override, frameCount: base.frames, durationMs: totalMs, delaysMs: delays, loop: 0,
+      keyframeIndices: base.keyframes, gif: gifPath, static: staticPath });
+    console.log(`Exported ${name}/variant ${variant.id}: ${base.frames} frames / ${totalMs}ms`);
+  }
+  manifest.totals = { states: STATES.length, frames: totalFrames, keyframes: totalKeyframes };
+  // 不调 packageAll，不写 manifest.json、qa-report.json、preview-states.js、frames/：基础那套的东西一样都不碰
+  const manifestPath = await saveJSON(`manifest-${name}.json`, manifest);
+  console.log(JSON.stringify({ outfit: name, states: STATES.length, frames: totalFrames, keyframes: totalKeyframes, variants: manifest.variants.length, manifest: manifestPath }));
+  return manifest;
+}
+
+// 换装 zip（--package-outfits）：四套整包打成一个 clawds-new-clothes-outfits-v<版本>.zip，给 Release 附的那一份。
+// 衣服名单从 outfits/*.cjs 读（_ 开头的草稿不算）：包里有什么由仓库决定，不由这台电脑上跑过哪几套决定，哪套缺 manifest-<o>.json 就停下。
+// 基础那个全量 zip 是先打包、后盖章（包里的图没有署名，老问题，另开一单）；这里反过来，先 stampTree 这几个目录（盖过的跳过）再打包。
+// 不带 stickers/：和全量 zip 不带它是同一个理由——618 那档在不在，全看这台电脑跑没跑过 --stickers。
+async function packageOutfits({ stamp = true } = {}) {
+  const names = (await fs.readdir(path.join(OUT, 'outfits'))).filter(file => file.endsWith('.cjs') && !file.startsWith('_')).map(file => file.slice(0, -'.cjs'.length)).sort();
+  if (!names.length) throw new Error('outfits/ 里没有衣服：换装 zip 没东西可打');
+  const manifests = {};
+  for (const name of names) {
+    try { manifests[name] = JSON.parse(await fs.readFile(path.join(OUT, `manifest-${name}.json`), 'utf8')); }
+    catch (error) { if (error.code === 'ENOENT') throw new Error(`换装 zip 少了 ${name}：先 npm run export:outfit -- ${name}`); throw error; }
+  }
+  const exists = require('node:fs').existsSync;
+  if (stamp) {
+    const { stampTree } = require('./tools/stamp-credits.cjs');
+    const r = stampTree(names.flatMap(name => OUTFIT_DIRS.map(dir => path.join(OUT, dir, name))).filter(p => exists(p)));
+    console.log(`署名盖进图里：${r.stamped} 张新盖，${r.skipped} 张已经盖过`);
+  }
+  // 一个目录底下的文件，按名排序、一层层往下走；点开头的、符号链接都不收
+  async function filesUnder(relative) {
+    let entries;
+    try { entries = await fs.readdir(path.join(OUT, relative), { withFileTypes: true }); }
+    catch (error) { if (error.code === 'ENOENT') return []; throw error; }
+    const files = [];
+    for (const entry of entries.sort((a, b) => a.name.localeCompare(b.name))) {
+      if (entry.name.startsWith('.')) continue;
+      if (entry.isDirectory()) files.push(...await filesUnder(`${relative}/${entry.name}`));
+      else if (entry.isFile()) files.push(`${relative}/${entry.name}`);
+    }
+    return files;
+  }
+  const entries = names.map(name => `manifest-${name}.json`);
+  for (const dir of OUTFIT_DIRS) for (const name of names) entries.push(...await filesUnder(`${dir}/${name}`));
+  // 索引里写着的每一张图都得在盘上：导到一半停下的那套根本不会写出 manifest，这一条防的是有人手删了图、或者只重出了一半
+  const present = new Set(entries);
+  for (const name of names) {
+    const listed = [...manifests[name].states.flatMap(s => [s.gif, s.static, s.keyframeSheet.path]), ...(manifests[name].variants || []).flatMap(v => [v.gif, v.static])];
+    const missing = listed.filter(file => !present.has(file));
+    if (missing.length) throw new Error(`manifest-${name}.json 里写着的 ${missing.slice(0, 3).join('、')}${missing.length > 3 ? ` 等 ${missing.length} 个` : ''}不在盘上：先 npm run export:outfit -- ${name}`);
+  }
+  entries.push('NOTICE', 'LICENSE', 'ATTRIBUTION.md', ...(await fs.readdir(path.join(OUT, 'LICENSES'))).filter(file => !file.startsWith('.')).sort().map(file => `LICENSES/${file}`));
+  const zip = new JSZip();
+  for (const relative of entries) zip.file(relative, await fs.readFile(path.join(OUT, relative)), { date: ARCHIVE_ENTRY_DATE });
+  // 和全量 zip 一样：JSZip 顺手建的目录条目也盖成固定日期，没改东西重打出来的包可以用 cmp 核对
+  for (const entry of Object.values(zip.files)) entry.date = ARCHIVE_ENTRY_DATE;
+  const archive = await zip.generateAsync({ type: 'nodebuffer', compression: 'DEFLATE', compressionOptions: { level: 6 } });
+  await save(OUTFIT_ARCHIVE, archive);
+  console.log(`Packaged ${Object.keys(zip.files).length} entries (${archive.length} bytes): ${OUTFIT_ARCHIVE} · ${names.join(' / ')}`);
 }
 
 // 新动作预览：画的人改一笔就想看一眼这一支动起来什么样、缩到实际显示那么大认不认得出来，用不着把 40 态整包重出。只渲染这一支，存到 states/preview/：
@@ -564,7 +749,10 @@ async function exportStickers({ outfit = null, only = null } = {}) {
   if (outfit) render('idle', 0, options);
   const states = only ? STATES.filter(state => state.id === only) : STATES;
   if (only && !states.length) throw new Error(`没有 ${only} 这一支：--stickers --state 只认 manifest 里的正式状态（states/ 的 _ 草稿不裁）`);
-  const manifest = JSON.parse(await fs.readFile(path.join(OUT, 'manifest.json'), 'utf8'));
+  let manifestText;
+  try { manifestText = await fs.readFile(path.join(OUT, 'manifest.json'), 'utf8'); }
+  catch (error) { if (error.code === 'ENOENT') throw new Error('贴纸要对 manifest.json 里的表情包定帧：先 npm run export'); throw error; }
+  const manifest = JSON.parse(manifestText);
   // 整套重裁：先把这套衣服的三档目录清掉，删掉的动作不留旧贴纸；只裁一支就只覆盖那一支
   if (!only) for (const size of STICKER_SIZES) await fs.rm(path.join(OUT, base, String(size)), { recursive: true, force: true });
   const entries = [], warnings = [];
@@ -657,10 +845,14 @@ async function exportStickers({ outfit = null, only = null } = {}) {
 
 // [1016 名字跟着图走] 导出和裁贴纸收尾时，把署名那一行写进每张 GIF / PNG 的元数据（tools/stamp-credits.cjs）：
 // 图被单独拷走，名字还在文件里。像素一个字节不动，盖过的不重复盖；--no-stamp 关掉（比较像素时用）。
-async function stampOutputs(argv) {
-  if (argv.includes('--no-stamp') || argv.includes('--preview')) return;
+// 盖哪几处跟着这一次出了什么走：贴纸带衣服名只盖 stickers/<o>，换装整包只盖 gif/<o> 那四处，基础整包照旧盖那 6 样；
+// --package-outfits 自己在打包前盖（packageOutfits 的 stamp），这里不再走一遍
+async function stampOutputs(argv, outfit = null) {
+  if (argv.includes('--no-stamp') || argv.includes('--preview') || argv.includes('--package-outfits')) return;
   const { stampTree } = require('./tools/stamp-credits.cjs');
-  const dirs = argv.includes('--stickers') ? ['stickers'] : ['gif', 'static', 'sheets', 'variants', 'lockscreen', 'keyframes-atlas.png'];
+  const dirs = argv.includes('--stickers') ? (outfit ? [`stickers/${outfit}`] : ['stickers'])
+    : outfit ? OUTFIT_DIRS.map(dir => `${dir}/${outfit}`)
+    : ['gif', 'static', 'sheets', 'variants', 'lockscreen', 'keyframes-atlas.png'];
   const exists = require('node:fs').existsSync; // 这个文件的 fs 是 promises 版，没有 existsSync
   const r = stampTree(dirs.map(d => path.join(__dirname, d)).filter(p => exists(p)));
   console.log(`署名盖进图里：${r.stamped} 张新盖，${r.skipped} 张已经盖过`);
@@ -673,17 +865,24 @@ if (require.main === module) {
   const stateName = stateAt >= 0 ? argv[stateAt + 1] : argv.find(arg => arg.startsWith('--state='))?.slice('--state='.length);
   const named = v => v && !v.startsWith('--');
   // 新动作只出预览：--state 不带 --preview 的话没有别的事可做（正式导出就是 node export.cjs，states/ 里的正式文件自己会进来）
-  // 换装只出预览：--outfit 不带 --preview 的话，整包导出会把老的 40 态原样再出一遍、衣服一件没穿上，宁可直接说清楚
+  // 换装：--outfit <name> --preview 只出十帧预览；不带 --preview 就是这一套的整包，写进 gif/<o>/、static/<o>/、sheets/<o>/、variants/<o>/ 和 manifest-<o>.json，
+  //   不碰基础那 48 支，不打全量 zip。--outfit 后面忘了带名字（npm run export:outfit 少了 -- <名字>）直接报错，不再掉进 exportAll 悄悄重出基础包
   // 贴纸：--stickers 自己一路，可配 --outfit（穿上那件再裁）和 --state（只裁一支）；不碰 gif/static/manifest，不打包
-  const job = argv.includes('--stickers')
+  // 换装 zip：--package-outfits 自己一路，不配别的；四套的 manifest-<o>.json 都在才打
+  const job = argv.includes('--stickers') && !argv.includes('--package-outfits')
     ? (((at < 0 && outfit === undefined) || named(outfit)) && ((stateAt < 0 && stateName === undefined) || named(stateName)) && !argv.includes('--preview') && !argv.includes('--package-only')
       ? exportStickers({ outfit: outfit || null, only: stateName || null }) : Promise.reject(new Error('贴纸：node export.cjs --stickers [--outfit <name>] [--state <id>]')))
+    : argv.includes('--package-outfits')
+    ? (at < 0 && outfit === undefined && stateAt < 0 && stateName === undefined && !['--stickers', '--preview', '--package-only'].some(flag => argv.includes(flag))
+      ? packageOutfits({ stamp: !argv.includes('--no-stamp') }) : Promise.reject(new Error('换装 zip：node export.cjs --package-outfits')))
     : stateName !== undefined
     ? (named(stateName) && argv.includes('--preview') && ((at < 0 && outfit === undefined) || named(outfit)) ? previewState(stateName, outfit || null) : Promise.reject(new Error('新动作只出预览：node export.cjs --state <id> --preview [--outfit <name>]')))
-    : outfit !== undefined || argv.includes('--preview')
-    ? (outfit && !outfit.startsWith('--') && argv.includes('--preview') ? previewOutfit(outfit) : Promise.reject(new Error('换装只出预览：node export.cjs --outfit <name> --preview')))
+    : at >= 0 || outfit !== undefined || argv.includes('--preview')
+    ? (named(outfit) && argv.includes('--preview') ? previewOutfit(outfit)
+      : named(outfit) && !argv.includes('--package-only') ? exportOutfit(outfit)
+      : Promise.reject(new Error('换装：node export.cjs --outfit <name> [--preview]')))
     : argv.includes('--package-only') ? packageAll() : exportAll();
-  const stamped = job.then(result => stampOutputs(argv).then(() => result));
+  const stamped = job.then(result => stampOutputs(argv, named(outfit) ? outfit : null).then(() => result));
   stamped.catch(error => { console.error(error.stack); process.exitCode = 1; });
 }
-module.exports = { exportAll, packageAll, previewOutfit, previewState, exportStickers, delaysFor, makeSheet, validatePixels };
+module.exports = { exportAll, packageAll, previewOutfit, exportOutfit, packageOutfits, previewState, exportStickers, delaysFor, makeSheet, validatePixels };

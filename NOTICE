@@ -26,13 +26,16 @@ LICENSING
   npm run export puts into the full zip)
 - Artwork: CC BY-NC-SA 4.0, see LICENSES/CC-BY-NC-SA-4.0.txt.
   outfits/aviator.cjs, outfits/beret.cjs, outfits/nightcap.cjs,
-  outfits/winter-fur.cjs, gif/, static/, sheets/, variants/, stickers/,
+  outfits/winter-fur.cjs, gif/, static/, sheets/, variants/, stickers/
+  (including the outfit packs in gif/<outfit>/, static/<outfit>/,
+  sheets/<outfit>/, variants/<outfit>/ and stickers/<outfit>/),
   docs/, README.md, CHANGELOG.md, ATTRIBUTION.md, NOTICE,
   states/README.md, outfits/README.md, and the outputs that are not
   committed: frames/, keyframes/, parts/, lockscreen/, keyframes-atlas.png,
   manifest.json, qa-report.json and anatomy-check.json (in the full zip
-  that npm run export makes), and the 408 / 618 sticker sizes (rebuilt by
-  npm run stickers)
+  that npm run export makes), manifest-<outfit>.json (in the outfits zip
+  that npm run export:outfits makes), and the 408 / 618 sticker sizes
+  (rebuilt by npm run stickers)
   Offered to the extent we hold rights in it. The Clawd character itself
   is excluded.
 - Per-file details: SPDX headers and REUSE.toml.

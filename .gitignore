@@ -1,5 +1,5 @@
-# npm ci 装的依赖
-node_modules/
+# npm ci 装的依赖（不带 /：git worktree 里链进来的 node_modules 是符号链接，带 / 的规则只认目录，认不出它）
+node_modules
 .DS_Store
 
 # npm run export 每次都能逐字节重出的大件：要的人自己跑一遍，或者去 Release 附件里拿
@@ -7,6 +7,8 @@ frames/
 keyframes/
 parts/
 manifest.json
+# 换装整包的索引：和 manifest.json 一样逐字节重出（npm run export:outfit -- <衣服>），换装 zip 里有
+manifest-*.json
 qa-report.json
 anatomy-check.json
 keyframes-atlas.png

@@ -166,6 +166,31 @@ node check-art.cjs --outfit beret
 10/15 第二轮（正面照 b、侧身后背照 a，四套各合成一件）的结果：飞行帽、贝雷帽、睡帽全过（飞行帽的护目镜压回框里 y 0，伞面不再碰镜片）；风雪帽还是 `dizzyThreeStarsTwoEyes`、`umbrellaDryBody`、`stretchingHandoff` 三条——都因为圆顶照她的比例比礼帽高 20，要不要压矮等她定。四套的 `coveredEyePixels`、`hatGapPixels` 都是 0。
 搬出来住那天（10/16）四套又整套查了一遍：`npm run check:outfits` 四套都是 0 条问题、0 条提醒，风雪帽上面那三条也过了。
 
+## 整包导出
+
+```sh
+npm run export                   # 先出基础那套：贴纸要对 manifest.json 里的表情包定帧
+npm run export:outfit -- beret   # 这一套的整包，就是 node export.cjs --outfit beret
+npm run export:outfits           # 四套整包 + 四套贴纸 + 换装 zip
+```
+
+`--outfit <名字>` 不带 `--preview` 就是这一套的整包，48 支动作和朝西的指路全穿上那件：
+
+| 出到哪 | 是什么 |
+|---|---|
+| `gif/<名字>/clawd-<id>.gif` | 48 支循环 GIF，和 `gif/` 同一组编码参数、同一套核对（300×300、1 位透明、70/60/70、无限循环、每帧 = 原渲染） |
+| `static/<名字>/clawd-<id>.png` | 第 0 帧（不取表情包定帧），解回来和 GIF 第 0 帧逐像素相同 |
+| `sheets/<名字>/<id>-keyframes.png` | 一行关键帧；播放表 `<id>-frames.png` 基础那套都不进 git，这里不出 |
+| `variants/<名字>/clawd-pointing-west.gif` / `.png` | 朝西的指路，不出逐帧目录 |
+| `manifest-<名字>.json` | 仓库根上，和 `manifest.json` 并排；键名沿用基础 manifest 的意思，每次整份重写，不写 sha256 |
+
+- 只认小写字母开头的名字。`_` 开头的草稿（比如 `_template`）只出预览，不出整包；衣服也不能和变体同名（`pointing-west`），不然清旧包会删掉基础那支的逐帧目录。
+- 开头先把这一套的四个旧目录（`gif/<名字>/`、`static/<名字>/`、`sheets/<名字>/`、`variants/<名字>/`）和 `manifest-<名字>.json` 清掉再重出，删掉的动作不留旧图。
+- 不碰基础那 48 支：`gif/clawd-*.gif`、`static/clawd-*.png`、`manifest.json`、全量 zip 一个字节不动；全量 zip 也不带衣服包。
+- 贴纸另走一步：`node export.cjs --stickers --outfit <名字>`（`npm run stickers -- --outfit <名字>`），存到 `stickers/<名字>/{300,408,618}/`，索引还是那一份 `stickers/stickers.json`，按 `outfit` 字段分。
+- `manifest-<名字>.json` 不进 git。`npm run export:outfits` 最后一步 `--package-outfits` 把四套打成 `clawds-new-clothes-outfits-v1.0.0.zip`，给 Release 附的那一份；换装 zip 不带贴纸。
+- 衣服包进了 git：加一支动作、改一笔衣服，记得重跑 `npm run export:outfits`，不然 `gif/<名字>/` 会少那一支、旧的那几张也不跟着变。
+
 ## 总表：她画的和他穿上的对着看
 
 ```sh
@@ -179,4 +204,4 @@ node tools/outfit-sheet.cjs --originals <原稿目录>        # 最左边多一�
 ## 还没有的
 
 - 手和脚还是皮肤色，衣服包不到（没有袖子、裤腿）。要的话下一步给衣服开一个 `hands` 的口子。
-- 换装的 GIF / 静图只出预览，`node export.cjs` 整包导出不认 `--outfit`；正式出一套换装的 48 支得另加导出路径（check-art 已经认 `--outfit` 了）。贴纸倒是已经能穿上衣服裁：`npm run stickers -- --outfit <名字>`，存到 `stickers/<名字>/`。
+- `preview.html` 还没有换衣服的开关：衣服版的 48 支要看，先直接打开 `gif/<名字>/`。

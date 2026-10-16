@@ -6,6 +6,11 @@ This little one grew version by version. The full development diary stays at hom
 一共 **48 支动作 · 2211 帧 · 340 个关键帧 · 四套衣服**：v6 原型 22 支 → v7 重做并加 5 → v8 加 8 → v9 加 5 → 第一批加 8。
 **48 moves · 2,211 frames · 340 keyframes · four outfits**: 22 in the v6 prototype → v7 redrew them and added 5 → v8 added 8 → v9 added 5 → batch 1 added 8.
 
+## 未发版 · Unreleased
+
+- 四套衣服各出一整包：`node export.cjs --outfit <名字>` 把 48 支动作和朝西的指路都穿上那件，出到 `gif/<名字>/`、`static/<名字>/`、`sheets/<名字>/`、`variants/<名字>/`，根上一份 `manifest-<名字>.json`；`npm run export:outfits` 一次出四套整包、四套贴纸，再打一个换装 zip（`clawds-new-clothes-outfits-v1.0.0.zip`，另附在 Release 上）。基础那套的 `gif/`、`static/`、`stickers/300/` 逐字节没动，全量 zip 也不带衣服包。`--outfit` 后面忘了带名字现在直接报错，不再悄悄重出一遍基础包。
+- Each of the four outfits now has a full pack: `node export.cjs --outfit <name>` dresses all 48 moves and the west-facing variant into `gif/<name>/`, `static/<name>/`, `sheets/<name>/` and `variants/<name>/`, plus `manifest-<name>.json`. `npm run export:outfits` builds all four packs and their stickers, then an outfits zip (`clawds-new-clothes-outfits-v1.0.0.zip`) that ships separately on the Release. The base `gif/`, `static/` and `stickers/300/` are byte-identical, and the full zip carries no outfit packs. `--outfit` with no name now fails instead of quietly re-exporting the base set.
+
 ## v1.0.0 · 第一封信 · First Post (2026-10-16)
 
 搬出来住的这一版。动作、衣服、规矩和家里那份是同一个版本；只动了「搬家」要动的地方：

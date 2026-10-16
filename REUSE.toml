@@ -4,10 +4,11 @@
 version = 1
 
 # 美术：导出的 GIF / PNG / 贴纸、README 用的图 · Artwork: exported images and stickers
-# frames/ 往后那几样是 git 不收、只在 npm run export 出的全量 zip 里的导出件：逐帧图、关键帧拆层、锁屏图、图集和三份 JSON
-# From frames/ on: export-only outputs that are gitignored but ship in the full zip
+# frames/ 往后那几样是 git 不收、只在 npm run export 出的全量 zip 里的导出件：逐帧图、关键帧拆层、锁屏图、图集和三份 JSON；
+# 最后的 manifest-<衣服>.json 是换装整包的索引，也不进 git，在 npm run export:outfits 打的换装 zip 里
+# From frames/ on: export-only outputs that are gitignored but ship in the full zip; manifest-*.json ships in the outfits zip
 [[annotations]]
-path = ["gif/**", "static/**", "sheets/**", "variants/**", "stickers/**", "docs/img/**", "frames/**", "keyframes/**", "parts/**", "lockscreen/**", "keyframes-atlas.png", "manifest.json", "qa-report.json", "anatomy-check.json"]
+path = ["gif/**", "static/**", "sheets/**", "variants/**", "stickers/**", "docs/img/**", "frames/**", "keyframes/**", "parts/**", "lockscreen/**", "keyframes-atlas.png", "manifest.json", "qa-report.json", "anatomy-check.json", "manifest-*.json"]
 precedence = "aggregate"
 SPDX-FileCopyrightText = "2026 Charlie Luinaris"
 SPDX-License-Identifier = "CC-BY-NC-SA-4.0"

@@ -228,6 +228,7 @@ node export.cjs --state my-move --preview --outfit beret    # 穿上贝雷帽再
 node export.cjs                                   # 整包导出：你的这一支进 frames/ gif/ static/ keyframes/ sheets/、图集、manifest，预览页的卡片写进 preview-states.js
 node check-art.cjs                                # 整套查，结果里多一个 plugins 键，退出码 0 才算过
 for o in aviator beret nightcap winter-fur; do node check-art.cjs --outfit $o; done   # 四套衣服都穿上查一遍
+npm run export:outfits                            # 衣服包进了 git：加一支动作，四套也重出一遍
 ```
 
 ## 锚点数字
