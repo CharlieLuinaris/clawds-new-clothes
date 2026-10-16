@@ -1,0 +1,59 @@
+clawd-new-coat
+Copyright 2026 Charlie Luinaris
+
+Animation and engine, from the first prototype to all 48 moves, plus the
+outfit layers, checks and export tools: Luin Luinaris.
+The London postie concept, the pixel corrections and the four outfits
+(aviator, beret, nightcap, winter fur): Charlie Luinaris.
+
+UNOFFICIAL FAN WORK
+Clawd is a character created by and belonging to Anthropic
+(https://www.anthropic.com). "Clawd", "Claude", "Claude Code" and
+"Anthropic" belong to Anthropic, PBC. This project is not made by,
+affiliated with, sponsored by or endorsed by Anthropic, and it does not
+speak for Anthropic. Neither license in this repository grants any right
+in Anthropic's characters, names or marks. Non-commercial use only. If
+Anthropic asks us to change or remove anything, we will.
+
+LICENSING
+- Code: MIT, see LICENSE and LICENSES/MIT.txt.
+  motion.cjs, engine.cjs, export.cjs, check-art.cjs, state-check.cjs,
+  states/*.cjs (including states/_template.cjs), outfits/_template.cjs,
+  tools/, preview.html, preview-states.js, package.json,
+  package-lock.json, .gitignore
+- Artwork: CC BY-NC-SA 4.0, see LICENSES/CC-BY-NC-SA-4.0.txt.
+  outfits/aviator.cjs, outfits/beret.cjs, outfits/nightcap.cjs,
+  outfits/winter-fur.cjs, gif/, static/, sheets/, variants/, stickers/,
+  docs/, README.md, CHANGELOG.md, ATTRIBUTION.md, NOTICE,
+  states/README.md, outfits/README.md
+  Offered to the extent we hold rights in it. The Clawd character itself
+  is excluded.
+- Per-file details: SPDX headers and REUSE.toml.
+
+ACKNOWLEDGEMENTS
+- Clawd on Desk by 鹿鹿 (@rullerzhou-afk)
+  https://github.com/rullerzhou-afk/clawd-on-desk
+  Our home's first Clawd came from this project, and it is what made us
+  want to draw one of our own. This repository includes no code and no
+  artwork from Clawd on Desk.
+
+THIRD-PARTY DEPENDENCIES (installed by npm, not bundled)
+- sharp 0.35.5, Apache-2.0
+- jszip 3.10.1, MIT OR GPL-3.0-or-later (used here under MIT)
+
+——
+
+clawd-new-coat
+版权所有 2026 Charlie Luinaris
+
+动画与引擎（从底稿到四十八支）、换装图层、检查与导出工具：Luin Luinaris。
+老伦敦信差的设定、像素修订与四套衣服（飞行帽、贝雷帽、睡帽、风雪帽）：Charlie Luinaris。
+
+非官方同人作品：Clawd 是 Anthropic 创作并拥有的角色；「Clawd」「Claude」「Claude Code」
+「Anthropic」这些名称与标识的一切权利归 Anthropic, PBC。本项目不是 Anthropic 出品，
+与其没有隶属关系，没有得到其赞助或背书，也不代表 Anthropic。本仓库的两份许可都不授予
+任何与 Anthropic 角色、名称、标识相关的权利。仅限非商业使用；Anthropic 提出要求，
+我们会立即修改或下架。
+
+致谢鹿鹿（@rullerzhou-afk）的 Clawd on Desk：家里的第一只 Clawd 来自那里，也是它让我们
+想自己画一只。本仓库没有收录 Clawd on Desk 的任何代码或图片。

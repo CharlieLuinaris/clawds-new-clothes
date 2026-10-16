@@ -1,0 +1,2282 @@
+{
+  "version": 1,
+  "name": "老伦敦信差 Clawd · 贴纸",
+  "generatedBy": "node export.cjs --stickers [--outfit <name>] [--state <id>]",
+  "sizes": [
+    300,
+    408,
+    618
+  ],
+  "margin": 6,
+  "alpha": {
+    "bitDepth": 1,
+    "values": [
+      0,
+      255
+    ]
+  },
+  "loop": 0,
+  "paths": "相对 stickers/ 这个文件夹",
+  "notInGit": [
+    "408",
+    "618"
+  ],
+  "stickers": [
+    {
+      "id": "idle",
+      "label": "待机",
+      "description": "站着眨眨眼，帽子跟着一口气起落——什么都不用说，「我在」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 47,
+        "startsAt": 0,
+        "frameCount": 48,
+        "durationMs": 3200
+      },
+      "box": {
+        "left": 64,
+        "top": 132,
+        "side": 172
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-idle.gif",
+          "png": "300/clawd-idle.png",
+          "gifBytes": 23389,
+          "pngBytes": 1065,
+          "fill": 0.53
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-idle.gif",
+          "png": "408/clawd-idle.png",
+          "gifBytes": 40838,
+          "pngBytes": 1972,
+          "fill": 0.78
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-idle.gif",
+          "png": "618/clawd-idle.png",
+          "gifBytes": 63605,
+          "pngBytes": 3758,
+          "fill": 0.78
+        }
+      }
+    },
+    {
+      "id": "typing",
+      "label": "打字",
+      "description": "低头噼里啪啦敲键盘，一个字一个字蹦起来——在写东西、在忙、「等我一下」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 60,
+        "top": 102,
+        "side": 180
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-typing.gif",
+          "png": "300/clawd-typing.png",
+          "gifBytes": 57100,
+          "pngBytes": 1182,
+          "fill": 0.56
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-typing.gif",
+          "png": "408/clawd-typing.png",
+          "gifBytes": 109576,
+          "pngBytes": 2248,
+          "fill": 0.82
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-typing.gif",
+          "png": "618/clawd-typing.png",
+          "gifBytes": 172605,
+          "pngBytes": 4301,
+          "fill": 0.82
+        }
+      }
+    },
+    {
+      "id": "thinking",
+      "label": "看怀表",
+      "description": "举着怀表盯着看——「我想想」「几点啦」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 60,
+        "top": 122,
+        "side": 197
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-thinking.gif",
+          "png": "300/clawd-thinking.png",
+          "gifBytes": 37173,
+          "pngBytes": 1179,
+          "fill": 0.62
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-thinking.gif",
+          "png": "408/clawd-thinking.png",
+          "gifBytes": 69054,
+          "pngBytes": 2149,
+          "fill": 0.91
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-thinking.gif",
+          "png": "618/clawd-thinking.png",
+          "gifBytes": 107861,
+          "pngBytes": 4083,
+          "fill": 0.9
+        }
+      }
+    },
+    {
+      "id": "happy",
+      "label": "开心",
+      "description": "蹦两下、落地压扁——「好耶」「太好了」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 51,
+        "top": 90,
+        "side": 198
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-happy.gif",
+          "png": "300/clawd-happy.png",
+          "gifBytes": 67394,
+          "pngBytes": 1150,
+          "fill": 0.62
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-happy.gif",
+          "png": "408/clawd-happy.png",
+          "gifBytes": 128042,
+          "pngBytes": 2173,
+          "fill": 0.91
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-happy.gif",
+          "png": "618/clawd-happy.png",
+          "gifBytes": 201608,
+          "pngBytes": 4169,
+          "fill": 0.9
+        }
+      }
+    },
+    {
+      "id": "notification",
+      "label": "摇铃通知",
+      "description": "摇着铃举一封封了蜡的信——「有你的信」「叮，来消息了」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 89,
+        "startsAt": 0,
+        "frameCount": 90,
+        "durationMs": 6000
+      },
+      "box": {
+        "left": 36,
+        "top": 103,
+        "side": 235
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-notification.gif",
+          "png": "300/clawd-notification.png",
+          "gifBytes": 74085,
+          "pngBytes": 1246,
+          "fill": 0.74
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-notification.gif",
+          "png": "408/clawd-notification.png",
+          "gifBytes": 82511,
+          "pngBytes": 1555,
+          "fill": 0.55
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-notification.gif",
+          "png": "618/clawd-notification.png",
+          "gifBytes": 159364,
+          "pngBytes": 3247,
+          "fill": 0.72
+        }
+      }
+    },
+    {
+      "id": "sleeping",
+      "label": "睡着",
+      "description": "帽子摘在地上，趴着冒 Z——「晚安」「困了，我先睡」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 85,
+        "top": 122,
+        "side": 207
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-sleeping.gif",
+          "png": "300/clawd-sleeping.png",
+          "gifBytes": 39731,
+          "pngBytes": 898,
+          "fill": 0.65
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-sleeping.gif",
+          "png": "408/clawd-sleeping.png",
+          "gifBytes": 47675,
+          "pngBytes": 1203,
+          "fill": 0.48
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-sleeping.gif",
+          "png": "618/clawd-sleeping.png",
+          "gifBytes": 85954,
+          "pngBytes": 2508,
+          "fill": 0.63
+        }
+      }
+    },
+    {
+      "id": "building",
+      "label": "搭建",
+      "description": "抡着锤子一下一下敲——「在修」「在搭」「干活中」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 60,
+        "top": 82,
+        "side": 236
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-building.gif",
+          "png": "300/clawd-building.png",
+          "gifBytes": 50853,
+          "pngBytes": 1202,
+          "fill": 0.75
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-building.gif",
+          "png": "408/clawd-building.png",
+          "gifBytes": 57419,
+          "pngBytes": 1495,
+          "fill": 0.55
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-building.gif",
+          "png": "618/clawd-building.png",
+          "gifBytes": 110423,
+          "pngBytes": 3260,
+          "fill": 0.72
+        }
+      }
+    },
+    {
+      "id": "juggling",
+      "label": "抛接",
+      "description": "两只手轮流抛接——「忙得团团转」「手上好多事」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 48,
+        "top": 90,
+        "side": 204
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-juggling.gif",
+          "png": "300/clawd-juggling.png",
+          "gifBytes": 77926,
+          "pngBytes": 1177,
+          "fill": 0.64
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-juggling.gif",
+          "png": "408/clawd-juggling.png",
+          "gifBytes": 149469,
+          "pngBytes": 2198,
+          "fill": 0.94
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-juggling.gif",
+          "png": "618/clawd-juggling.png",
+          "gifBytes": 234667,
+          "pngBytes": 4251,
+          "fill": 0.93
+        }
+      }
+    },
+    {
+      "id": "sweeping",
+      "label": "打扫",
+      "description": "拿扫帚四拍地扫——「收拾一下」「打扫干净了」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 60,
+        "top": 120,
+        "side": 219
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-sweeping.gif",
+          "png": "300/clawd-sweeping.png",
+          "gifBytes": 53135,
+          "pngBytes": 1280,
+          "fill": 0.69
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-sweeping.gif",
+          "png": "408/clawd-sweeping.png",
+          "gifBytes": 59652,
+          "pngBytes": 1569,
+          "fill": 0.51
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-sweeping.gif",
+          "png": "618/clawd-sweeping.png",
+          "gifBytes": 116322,
+          "pngBytes": 3225,
+          "fill": 0.67
+        }
+      }
+    },
+    {
+      "id": "carrying",
+      "label": "搬运",
+      "description": "沉一下、提起来、扛上肩——「我来扛」「搬过来啦」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 57,
+        "top": 126,
+        "side": 186
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-carrying.gif",
+          "png": "300/clawd-carrying.png",
+          "gifBytes": 37400,
+          "pngBytes": 973,
+          "fill": 0.58
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-carrying.gif",
+          "png": "408/clawd-carrying.png",
+          "gifBytes": 67650,
+          "pngBytes": 1949,
+          "fill": 0.85
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-carrying.gif",
+          "png": "618/clawd-carrying.png",
+          "gifBytes": 106451,
+          "pngBytes": 3872,
+          "fill": 0.84
+        }
+      }
+    },
+    {
+      "id": "error",
+      "label": "报错",
+      "description": "吓得一蹦、帽子飞离头顶、头顶一根红「!」——「坏了」「出错了」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 54,
+        "top": 88,
+        "side": 192
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-error.gif",
+          "png": "300/clawd-error.png",
+          "gifBytes": 37745,
+          "pngBytes": 1122,
+          "fill": 0.6
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-error.gif",
+          "png": "408/clawd-error.png",
+          "gifBytes": 69519,
+          "pngBytes": 2129,
+          "fill": 0.88
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-error.gif",
+          "png": "618/clawd-error.png",
+          "gifBytes": 109349,
+          "pngBytes": 4130,
+          "fill": 0.87
+        }
+      }
+    },
+    {
+      "id": "walking",
+      "label": "走路",
+      "description": "侧身一步一步走，脚底的地在滚——「在路上」「这就来」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 53,
+        "top": 122,
+        "side": 195
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-walking.gif",
+          "png": "300/clawd-walking.png",
+          "gifBytes": 72051,
+          "pngBytes": 1267,
+          "fill": 0.61
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-walking.gif",
+          "png": "408/clawd-walking.png",
+          "gifBytes": 137971,
+          "pngBytes": 2154,
+          "fill": 0.9
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-walking.gif",
+          "png": "618/clawd-walking.png",
+          "gifBytes": 218440,
+          "pngBytes": 4017,
+          "fill": 0.89
+        }
+      }
+    },
+    {
+      "id": "listening",
+      "label": "听音乐",
+      "description": "低着头听，身边飘音符——「在听歌」「这首好听」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 47,
+        "startsAt": 0,
+        "frameCount": 48,
+        "durationMs": 3200
+      },
+      "box": {
+        "left": 58,
+        "top": 111,
+        "side": 208
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-listening.gif",
+          "png": "300/clawd-listening.png",
+          "gifBytes": 81212,
+          "pngBytes": 1324,
+          "fill": 0.65
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-listening.gif",
+          "png": "408/clawd-listening.png",
+          "gifBytes": 91146,
+          "pngBytes": 1626,
+          "fill": 0.48
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-listening.gif",
+          "png": "618/clawd-listening.png",
+          "gifBytes": 180149,
+          "pngBytes": 3231,
+          "fill": 0.63
+        }
+      }
+    },
+    {
+      "id": "strolling",
+      "label": "慢悠悠走",
+      "description": "慢慢晃着走——「散步」「不急，慢慢来」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 55,
+        "top": 125,
+        "side": 191
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-strolling.gif",
+          "png": "300/clawd-strolling.png",
+          "gifBytes": 71829,
+          "pngBytes": 1027,
+          "fill": 0.6
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-strolling.gif",
+          "png": "408/clawd-strolling.png",
+          "gifBytes": 139148,
+          "pngBytes": 1960,
+          "fill": 0.88
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-strolling.gif",
+          "png": "618/clawd-strolling.png",
+          "gifBytes": 220797,
+          "pngBytes": 3802,
+          "fill": 0.87
+        }
+      }
+    },
+    {
+      "id": "running",
+      "label": "小跑",
+      "description": "小跑着赶——「马上到」「来了来了」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 49,
+        "top": 114,
+        "side": 203
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-running.gif",
+          "png": "300/clawd-running.png",
+          "gifBytes": 70731,
+          "pngBytes": 1134,
+          "fill": 0.64
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-running.gif",
+          "png": "408/clawd-running.png",
+          "gifBytes": 134935,
+          "pngBytes": 2047,
+          "fill": 0.94
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-running.gif",
+          "png": "618/clawd-running.png",
+          "gifBytes": 213646,
+          "pngBytes": 3897,
+          "fill": 0.93
+        }
+      }
+    },
+    {
+      "id": "sprinting",
+      "label": "冲刺",
+      "description": "身子前倾带着速度线冲——「冲！」「火速赶到」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 47,
+        "top": 112,
+        "side": 207
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-sprinting.gif",
+          "png": "300/clawd-sprinting.png",
+          "gifBytes": 73136,
+          "pngBytes": 1202,
+          "fill": 0.65
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-sprinting.gif",
+          "png": "408/clawd-sprinting.png",
+          "gifBytes": 82785,
+          "pngBytes": 1480,
+          "fill": 0.48
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-sprinting.gif",
+          "png": "618/clawd-sprinting.png",
+          "gifBytes": 160776,
+          "pngBytes": 3011,
+          "fill": 0.63
+        }
+      }
+    },
+    {
+      "id": "hopping",
+      "label": "轻轻蹦",
+      "description": "原地轻轻蹦几下——「嘿嘿」「心情好」",
+      "outfit": null,
+      "stickerFrame": 7,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 7,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 59,
+        "top": 115,
+        "side": 182
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-hopping.gif",
+          "png": "300/clawd-hopping.png",
+          "gifBytes": 61896,
+          "pngBytes": 1108,
+          "fill": 0.57
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-hopping.gif",
+          "png": "408/clawd-hopping.png",
+          "gifBytes": 116007,
+          "pngBytes": 2042,
+          "fill": 0.83
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-hopping.gif",
+          "png": "618/clawd-hopping.png",
+          "gifBytes": 184059,
+          "pngBytes": 3877,
+          "fill": 0.83
+        }
+      }
+    },
+    {
+      "id": "jumping",
+      "label": "蓄力高跳",
+      "description": "蹲下蓄力、一跳老高——「好兴奋」「起飞」",
+      "outfit": null,
+      "stickerFrame": 23,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 23,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 52,
+        "top": 84,
+        "side": 196
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-jumping.gif",
+          "png": "300/clawd-jumping.png",
+          "gifBytes": 46247,
+          "pngBytes": 1102,
+          "fill": 0.61
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-jumping.gif",
+          "png": "408/clawd-jumping.png",
+          "gifBytes": 85714,
+          "pngBytes": 2035,
+          "fill": 0.9
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-jumping.gif",
+          "png": "618/clawd-jumping.png",
+          "gifBytes": 135372,
+          "pngBytes": 3918,
+          "fill": 0.89
+        }
+      }
+    },
+    {
+      "id": "leaping",
+      "label": "向前跃",
+      "description": "往前一跃——「扑过来啦」「出发」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 52,
+        "top": 94,
+        "side": 209
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-leaping.gif",
+          "png": "300/clawd-leaping.png",
+          "gifBytes": 71105,
+          "pngBytes": 1042,
+          "fill": 0.66
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-leaping.gif",
+          "png": "408/clawd-leaping.png",
+          "gifBytes": 80734,
+          "pngBytes": 1330,
+          "fill": 0.48
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-leaping.gif",
+          "png": "618/clawd-leaping.png",
+          "gifBytes": 156980,
+          "pngBytes": 2884,
+          "fill": 0.64
+        }
+      }
+    },
+    {
+      "id": "front-running",
+      "label": "正面小跑",
+      "description": "正对着你跑过来——「我来接你」「朝你跑过去」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 61,
+        "top": 125,
+        "side": 179
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-front-running.gif",
+          "png": "300/clawd-front-running.png",
+          "gifBytes": 68928,
+          "pngBytes": 1073,
+          "fill": 0.56
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-front-running.gif",
+          "png": "408/clawd-front-running.png",
+          "gifBytes": 131106,
+          "pngBytes": 1983,
+          "fill": 0.82
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-front-running.gif",
+          "png": "618/clawd-front-running.png",
+          "gifBytes": 208339,
+          "pngBytes": 3823,
+          "fill": 0.81
+        }
+      }
+    },
+    {
+      "id": "greeting",
+      "label": "扶帽致意",
+      "description": "抬手扶一下帽檐致意——「你好」「早安」「辛苦了」",
+      "outfit": null,
+      "stickerFrame": 15,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 15,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 59,
+        "top": 124,
+        "side": 179
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-greeting.gif",
+          "png": "300/clawd-greeting.png",
+          "gifBytes": 48387,
+          "pngBytes": 1230,
+          "fill": 0.56
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-greeting.gif",
+          "png": "408/clawd-greeting.png",
+          "gifBytes": 90109,
+          "pngBytes": 2202,
+          "fill": 0.82
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-greeting.gif",
+          "png": "618/clawd-greeting.png",
+          "gifBytes": 142447,
+          "pngBytes": 4129,
+          "fill": 0.81
+        }
+      }
+    },
+    {
+      "id": "delighted",
+      "label": "爱心小跳",
+      "description": "蹦起来冒一颗心——「好开心」「喜欢」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 51,
+        "top": 92,
+        "side": 216
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-delighted.gif",
+          "png": "300/clawd-delighted.png",
+          "gifBytes": 59302,
+          "pngBytes": 1132,
+          "fill": 0.68
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-delighted.gif",
+          "png": "408/clawd-delighted.png",
+          "gifBytes": 67509,
+          "pngBytes": 1421,
+          "fill": 0.5
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-delighted.gif",
+          "png": "618/clawd-delighted.png",
+          "gifBytes": 129565,
+          "pngBytes": 3080,
+          "fill": 0.66
+        }
+      }
+    },
+    {
+      "id": "hugged",
+      "label": "被抱起来",
+      "description": "被抱离地面晃着，脚乱踢、帽子挤歪、仰脸看——「被你抱住了」「抱着呢」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 57,
+        "top": 110,
+        "side": 186
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-hugged.gif",
+          "png": "300/clawd-hugged.png",
+          "gifBytes": 58678,
+          "pngBytes": 1147,
+          "fill": 0.58
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-hugged.gif",
+          "png": "408/clawd-hugged.png",
+          "gifBytes": 108398,
+          "pngBytes": 2048,
+          "fill": 0.85
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-hugged.gif",
+          "png": "618/clawd-hugged.png",
+          "gifBytes": 171722,
+          "pngBytes": 3809,
+          "fill": 0.84
+        }
+      }
+    },
+    {
+      "id": "fishing",
+      "label": "陪钓",
+      "description": "侧身拿着竿，浮子一沉提起一条小鱼——「陪你钓鱼」「慢慢等」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 47,
+        "startsAt": 0,
+        "frameCount": 48,
+        "durationMs": 3200
+      },
+      "box": {
+        "left": 64,
+        "top": 95,
+        "side": 231
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-fishing.gif",
+          "png": "300/clawd-fishing.png",
+          "gifBytes": 54983,
+          "pngBytes": 1389,
+          "fill": 0.73
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-fishing.gif",
+          "png": "408/clawd-fishing.png",
+          "gifBytes": 62554,
+          "pngBytes": 1700,
+          "fill": 0.54
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-fishing.gif",
+          "png": "618/clawd-fishing.png",
+          "gifBytes": 120133,
+          "pngBytes": 3330,
+          "fill": 0.71
+        }
+      }
+    },
+    {
+      "id": "writing",
+      "label": "写信",
+      "description": "执笔一划一划写满两行、塞进包里——「在给你写信」「写好了」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 74,
+        "top": 143,
+        "side": 156
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-writing.gif",
+          "png": "300/clawd-writing.png",
+          "gifBytes": 10318,
+          "pngBytes": 1070,
+          "fill": 0.48
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-writing.gif",
+          "png": "408/clawd-writing.png",
+          "gifBytes": 18181,
+          "pngBytes": 1962,
+          "fill": 0.71
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-writing.gif",
+          "png": "618/clawd-writing.png",
+          "gifBytes": 27292,
+          "pngBytes": 3727,
+          "fill": 0.7
+        }
+      }
+    },
+    {
+      "id": "yawning",
+      "label": "打哈欠",
+      "description": "伸个腰捂嘴打哈欠、困得点头——「好困」「该睡了」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 46,
+        "top": 117,
+        "side": 190
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-yawning.gif",
+          "png": "300/clawd-yawning.png",
+          "gifBytes": 37878,
+          "pngBytes": 1166,
+          "fill": 0.59
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-yawning.gif",
+          "png": "408/clawd-yawning.png",
+          "gifBytes": 68268,
+          "pngBytes": 2059,
+          "fill": 0.87
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-yawning.gif",
+          "png": "618/clawd-yawning.png",
+          "gifBytes": 107676,
+          "pngBytes": 3939,
+          "fill": 0.86
+        }
+      }
+    },
+    {
+      "id": "dice",
+      "label": "掷骰",
+      "description": "摇一摇甩出两颗骰子——「掷一把」「看运气」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 63,
+        "top": 96,
+        "side": 241
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-dice.gif",
+          "png": "300/clawd-dice.png",
+          "gifBytes": 44052,
+          "pngBytes": 1091,
+          "fill": 0.76
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-dice.gif",
+          "png": "408/clawd-dice.png",
+          "gifBytes": 50277,
+          "pngBytes": 1389,
+          "fill": 0.56
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-dice.gif",
+          "png": "618/clawd-dice.png",
+          "gifBytes": 95464,
+          "pngBytes": 2907,
+          "fill": 0.74
+        }
+      }
+    },
+    {
+      "id": "reading",
+      "label": "读信",
+      "description": "捧着信一行行读，读到落款的心蹦起来捧到胸口——「收到你的信了」「在看」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 74,
+        "top": 125,
+        "side": 185
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-reading.gif",
+          "png": "300/clawd-reading.png",
+          "gifBytes": 23711,
+          "pngBytes": 1016,
+          "fill": 0.58
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-reading.gif",
+          "png": "408/clawd-reading.png",
+          "gifBytes": 42821,
+          "pngBytes": 1963,
+          "fill": 0.85
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-reading.gif",
+          "png": "618/clawd-reading.png",
+          "gifBytes": 66601,
+          "pngBytes": 3802,
+          "fill": 0.84
+        }
+      }
+    },
+    {
+      "id": "stargazing",
+      "label": "看星星",
+      "description": "仰头举望远镜看星星，流星划过闭眼许愿——「夜深了」「许个愿」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 47,
+        "startsAt": 0,
+        "frameCount": 48,
+        "durationMs": 3200
+      },
+      "box": {
+        "left": 64,
+        "top": 61,
+        "side": 242
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-stargazing.gif",
+          "png": "300/clawd-stargazing.png",
+          "gifBytes": 54171,
+          "pngBytes": 1330,
+          "fill": 0.77
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-stargazing.gif",
+          "png": "408/clawd-stargazing.png",
+          "gifBytes": 61909,
+          "pngBytes": 1629,
+          "fill": 0.56
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-stargazing.gif",
+          "png": "618/clawd-stargazing.png",
+          "gifBytes": 117770,
+          "pngBytes": 3277,
+          "fill": 0.74
+        }
+      }
+    },
+    {
+      "id": "phone",
+      "label": "打电话",
+      "description": "举着老式听筒听、凑到话筒说——「在电话里」「我在听」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 64,
+        "top": 117,
+        "side": 202
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-phone.gif",
+          "png": "300/clawd-phone.png",
+          "gifBytes": 40126,
+          "pngBytes": 1146,
+          "fill": 0.63
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-phone.gif",
+          "png": "408/clawd-phone.png",
+          "gifBytes": 73652,
+          "pngBytes": 2143,
+          "fill": 0.93
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-phone.gif",
+          "png": "618/clawd-phone.png",
+          "gifBytes": 115003,
+          "pngBytes": 4137,
+          "fill": 0.92
+        }
+      }
+    },
+    {
+      "id": "painting",
+      "label": "画画",
+      "description": "对着画架一笔一笔画出一颗心——「画给你」「在画画」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 39,
+        "top": 68,
+        "side": 265
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-painting.gif",
+          "png": "300/clawd-painting.png",
+          "gifBytes": 58505,
+          "pngBytes": 1313,
+          "fill": 0.84
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-painting.gif",
+          "png": "408/clawd-painting.png",
+          "gifBytes": 65310,
+          "pngBytes": 1625,
+          "fill": 0.62
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-painting.gif",
+          "png": "618/clawd-painting.png",
+          "gifBytes": 127553,
+          "pngBytes": 3467,
+          "fill": 0.82
+        }
+      }
+    },
+    {
+      "id": "dizzy",
+      "label": "晕乎乎",
+      "description": "身子晃、三颗金星绕帽子转——「晕了」「脑子转不动了」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 35,
+        "startsAt": 0,
+        "frameCount": 36,
+        "durationMs": 2400
+      },
+      "box": {
+        "left": 54,
+        "top": 111,
+        "side": 192
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-dizzy.gif",
+          "png": "300/clawd-dizzy.png",
+          "gifBytes": 55798,
+          "pngBytes": 1127,
+          "fill": 0.6
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-dizzy.gif",
+          "png": "408/clawd-dizzy.png",
+          "gifBytes": 104834,
+          "pngBytes": 2062,
+          "fill": 0.88
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-dizzy.gif",
+          "png": "618/clawd-dizzy.png",
+          "gifBytes": 165777,
+          "pngBytes": 3927,
+          "fill": 0.87
+        }
+      }
+    },
+    {
+      "id": "blushing",
+      "label": "害羞脸红",
+      "description": "两颊红红托着腮，偷看一眼又捂回去——「害羞」「亲亲」「mua」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 64,
+        "top": 120,
+        "side": 187
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-blushing.gif",
+          "png": "300/clawd-blushing.png",
+          "gifBytes": 32219,
+          "pngBytes": 1156,
+          "fill": 0.58
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-blushing.gif",
+          "png": "408/clawd-blushing.png",
+          "gifBytes": 57820,
+          "pngBytes": 1959,
+          "fill": 0.86
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-blushing.gif",
+          "png": "618/clawd-blushing.png",
+          "gifBytes": 90395,
+          "pngBytes": 3661,
+          "fill": 0.85
+        }
+      }
+    },
+    {
+      "id": "teary",
+      "label": "委屈",
+      "description": "低着头戳手指、一滴一滴掉泪——「委屈」「呜呜」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 74,
+        "top": 145,
+        "side": 156
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-teary.gif",
+          "png": "300/clawd-teary.png",
+          "gifBytes": 19794,
+          "pngBytes": 1072,
+          "fill": 0.48
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-teary.gif",
+          "png": "408/clawd-teary.png",
+          "gifBytes": 35138,
+          "pngBytes": 1914,
+          "fill": 0.71
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-teary.gif",
+          "png": "618/clawd-teary.png",
+          "gifBytes": 56414,
+          "pngBytes": 3686,
+          "fill": 0.7
+        }
+      }
+    },
+    {
+      "id": "pouting",
+      "label": "鼓脸",
+      "description": "鼓着腮、抱着手、斜眼哼气——「哼」「吃醋了」「不理你」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 39,
+        "top": 107,
+        "side": 222
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-pouting.gif",
+          "png": "300/clawd-pouting.png",
+          "gifBytes": 22295,
+          "pngBytes": 1062,
+          "fill": 0.7
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-pouting.gif",
+          "png": "408/clawd-pouting.png",
+          "gifBytes": 25597,
+          "pngBytes": 1356,
+          "fill": 0.51
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-pouting.gif",
+          "png": "618/clawd-pouting.png",
+          "gifBytes": 46433,
+          "pngBytes": 2853,
+          "fill": 0.68
+        }
+      }
+    },
+    {
+      "id": "lantern",
+      "label": "提灯",
+      "description": "提一盏小灯站着等——「在等你」「路黑，我给你照着」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 47,
+        "startsAt": 0,
+        "frameCount": 48,
+        "durationMs": 3200
+      },
+      "box": {
+        "left": 64,
+        "top": 115,
+        "side": 207
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-lantern.gif",
+          "png": "300/clawd-lantern.png",
+          "gifBytes": 27406,
+          "pngBytes": 1156,
+          "fill": 0.65
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-lantern.gif",
+          "png": "408/clawd-lantern.png",
+          "gifBytes": 31092,
+          "pngBytes": 1454,
+          "fill": 0.48
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-lantern.gif",
+          "png": "618/clawd-lantern.png",
+          "gifBytes": 57477,
+          "pngBytes": 3088,
+          "fill": 0.63
+        }
+      }
+    },
+    {
+      "id": "pointing",
+      "label": "指路",
+      "description": "伸手往一边指——「那边」「在东边」「看这个」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 64,
+        "top": 120,
+        "side": 202
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-pointing.gif",
+          "png": "300/clawd-pointing.png",
+          "gifBytes": 17176,
+          "pngBytes": 1072,
+          "fill": 0.63
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-pointing.gif",
+          "png": "408/clawd-pointing.png",
+          "gifBytes": 29102,
+          "pngBytes": 1992,
+          "fill": 0.93
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-pointing.gif",
+          "png": "618/clawd-pointing.png",
+          "gifBytes": 44839,
+          "pngBytes": 3832,
+          "fill": 0.92
+        }
+      }
+    },
+    {
+      "id": "waving",
+      "label": "挥手",
+      "description": "手举过帽顶左右挥——「嗨」「我在这儿」「拜拜」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 64,
+        "top": 120,
+        "side": 172
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-waving.gif",
+          "png": "300/clawd-waving.png",
+          "gifBytes": 34398,
+          "pngBytes": 1117,
+          "fill": 0.53
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-waving.gif",
+          "png": "408/clawd-waving.png",
+          "gifBytes": 60959,
+          "pngBytes": 2076,
+          "fill": 0.78
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-waving.gif",
+          "png": "618/clawd-waving.png",
+          "gifBytes": 95901,
+          "pngBytes": 3931,
+          "fill": 0.78
+        }
+      }
+    },
+    {
+      "id": "umbrella",
+      "label": "打伞",
+      "description": "撑一把红伞，伞外下着雨——「下雨了」「记得带伞」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": -1,
+        "top": -7,
+        "side": 287
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-umbrella.gif",
+          "png": "300/clawd-umbrella.png",
+          "gifBytes": 117924,
+          "pngBytes": 1717,
+          "fill": 0.92
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-umbrella.gif",
+          "png": "408/clawd-umbrella.png",
+          "gifBytes": 131368,
+          "pngBytes": 2144,
+          "fill": 0.67
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-umbrella.gif",
+          "png": "618/clawd-umbrella.png",
+          "gifBytes": 274447,
+          "pngBytes": 4691,
+          "fill": 0.89
+        }
+      }
+    },
+    {
+      "id": "stretching",
+      "label": "伸懒腰",
+      "description": "从睡着坐起来、扣上帽子伸个大懒腰——「早」「醒啦」",
+      "outfit": null,
+      "stickerFrame": 14,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 14,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 52,
+        "top": 85,
+        "side": 240
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-stretching.gif",
+          "png": "300/clawd-stretching.png",
+          "gifBytes": 39076,
+          "pngBytes": 1159,
+          "fill": 0.76
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-stretching.gif",
+          "png": "408/clawd-stretching.png",
+          "gifBytes": 45871,
+          "pngBytes": 1452,
+          "fill": 0.56
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-stretching.gif",
+          "png": "618/clawd-stretching.png",
+          "gifBytes": 84143,
+          "pngBytes": 3068,
+          "fill": 0.74
+        }
+      }
+    },
+    {
+      "id": "confused",
+      "label": "歪头疑惑",
+      "description": "歪着头挠帽檐、顶出一个问号——「啊？」「没看懂」「想不起来了」",
+      "outfit": null,
+      "stickerFrame": 24,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 24,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 62,
+        "top": 75,
+        "side": 234
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-confused.gif",
+          "png": "300/clawd-confused.png",
+          "gifBytes": 43143,
+          "pngBytes": 1238,
+          "fill": 0.74
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-confused.gif",
+          "png": "408/clawd-confused.png",
+          "gifBytes": 50301,
+          "pngBytes": 1530,
+          "fill": 0.54
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-confused.gif",
+          "png": "618/clawd-confused.png",
+          "gifBytes": 93049,
+          "pngBytes": 3299,
+          "fill": 0.72
+        }
+      }
+    },
+    {
+      "id": "heart-gift",
+      "label": "捧心比心",
+      "description": "双手捧一颗大红心往上送，闭眼笑、脸红——「爱你」「送你」「谢谢你」",
+      "outfit": null,
+      "stickerFrame": 18,
+      "stillInLoop": false,
+      "loop": {
+        "segment": "sticker",
+        "from": 0,
+        "to": 8,
+        "startsAt": 0,
+        "frameCount": 9,
+        "durationMs": 600
+      },
+      "box": {
+        "left": 34,
+        "top": 81,
+        "side": 232
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-heart-gift.gif",
+          "png": "300/clawd-heart-gift.png",
+          "gifBytes": 15116,
+          "pngBytes": 1330,
+          "fill": 0.73
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-heart-gift.gif",
+          "png": "408/clawd-heart-gift.png",
+          "gifBytes": 17013,
+          "pngBytes": 1643,
+          "fill": 0.54
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-heart-gift.gif",
+          "png": "618/clawd-heart-gift.png",
+          "gifBytes": 33278,
+          "pngBytes": 3532,
+          "fill": 0.71
+        }
+      }
+    },
+    {
+      "id": "hug-please",
+      "label": "求抱抱",
+      "description": "两只手贴着身子举起来一张一合地够，踮着脚、眼睛亮亮地往上看——「抱抱」「要抱」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": "sticker",
+        "from": 0,
+        "to": 6,
+        "startsAt": 0,
+        "frameCount": 7,
+        "durationMs": 470
+      },
+      "box": {
+        "left": 60,
+        "top": 126,
+        "side": 180
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-hug-please.gif",
+          "png": "300/clawd-hug-please.png",
+          "gifBytes": 5910,
+          "pngBytes": 1211,
+          "fill": 0.56
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-hug-please.gif",
+          "png": "408/clawd-hug-please.png",
+          "gifBytes": 10488,
+          "pngBytes": 2180,
+          "fill": 0.82
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-hug-please.gif",
+          "png": "618/clawd-hug-please.png",
+          "gifBytes": 16497,
+          "pngBytes": 4044,
+          "fill": 0.82
+        }
+      }
+    },
+    {
+      "id": "laughing",
+      "label": "大笑",
+      "description": "眯着眼捂肚子抖、蹦到帽子飞、笑瘫了捶地——「哈哈哈」「笑死」",
+      "outfit": null,
+      "stickerFrame": 19,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 19,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 24,
+        "top": 75,
+        "side": 252
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-laughing.gif",
+          "png": "300/clawd-laughing.png",
+          "gifBytes": 57881,
+          "pngBytes": 1213,
+          "fill": 0.8
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-laughing.gif",
+          "png": "408/clawd-laughing.png",
+          "gifBytes": 66385,
+          "pngBytes": 1522,
+          "fill": 0.59
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-laughing.gif",
+          "png": "618/clawd-laughing.png",
+          "gifBytes": 126241,
+          "pngBytes": 3291,
+          "fill": 0.78
+        }
+      }
+    },
+    {
+      "id": "sign-no",
+      "label": "举❌牌",
+      "description": "死鱼眼撇开、举着红叉牌左右摇——「不行」「才不要」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 64,
+        "top": 81,
+        "side": 222
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-sign-no.gif",
+          "png": "300/clawd-sign-no.png",
+          "gifBytes": 26029,
+          "pngBytes": 1220,
+          "fill": 0.7
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-sign-no.gif",
+          "png": "408/clawd-sign-no.png",
+          "gifBytes": 29691,
+          "pngBytes": 1525,
+          "fill": 0.51
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-sign-no.gif",
+          "png": "618/clawd-sign-no.png",
+          "gifBytes": 54479,
+          "pngBytes": 3290,
+          "fill": 0.68
+        }
+      }
+    },
+    {
+      "id": "sign-yes",
+      "label": "举✅牌",
+      "description": "举着绿勾牌、眨一只眼冒颗星——「好」「收到」「可以」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 0,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 52,
+        "top": 70,
+        "side": 229
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-sign-yes.gif",
+          "png": "300/clawd-sign-yes.png",
+          "gifBytes": 51538,
+          "pngBytes": 1345,
+          "fill": 0.72
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-sign-yes.gif",
+          "png": "408/clawd-sign-yes.png",
+          "gifBytes": 58214,
+          "pngBytes": 1636,
+          "fill": 0.53
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-sign-yes.gif",
+          "png": "618/clawd-sign-yes.png",
+          "gifBytes": 111778,
+          "pngBytes": 3529,
+          "fill": 0.7
+        }
+      }
+    },
+    {
+      "id": "surprised",
+      "label": "震惊愣住",
+      "description": "脚钉在地上、帽子自己弹起来、金线迸开——「啊？！」「真的假的」「吓我一跳」",
+      "outfit": null,
+      "stickerFrame": 0,
+      "stillInLoop": true,
+      "loop": {
+        "segment": "sticker",
+        "from": 0,
+        "to": 14,
+        "startsAt": 0,
+        "frameCount": 15,
+        "durationMs": 1000
+      },
+      "box": {
+        "left": 29,
+        "top": 67,
+        "side": 247
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-surprised.gif",
+          "png": "300/clawd-surprised.png",
+          "gifBytes": 7500,
+          "pngBytes": 1365,
+          "fill": 0.78
+        },
+        "408": {
+          "scale": 1,
+          "gif": "408/clawd-surprised.gif",
+          "png": "408/clawd-surprised.png",
+          "gifBytes": 8507,
+          "pngBytes": 1681,
+          "fill": 0.58
+        },
+        "618": {
+          "scale": 2,
+          "gif": "618/clawd-surprised.gif",
+          "png": "618/clawd-surprised.png",
+          "gifBytes": 15456,
+          "pngBytes": 3446,
+          "fill": 0.76
+        }
+      }
+    },
+    {
+      "id": "sweating",
+      "label": "尴尬流汗",
+      "description": "帽檐挂着大汗珠、扭开脸挠腮干笑——「^^;」「被抓到了」「对不起嘛」",
+      "outfit": null,
+      "stickerFrame": 27,
+      "stillInLoop": true,
+      "loop": {
+        "segment": null,
+        "from": 0,
+        "to": 44,
+        "startsAt": 27,
+        "frameCount": 45,
+        "durationMs": 3000
+      },
+      "box": {
+        "left": 54,
+        "top": 130,
+        "side": 182
+      },
+      "sizes": {
+        "300": {
+          "scale": 1,
+          "gif": "300/clawd-sweating.gif",
+          "png": "300/clawd-sweating.png",
+          "gifBytes": 38369,
+          "pngBytes": 1266,
+          "fill": 0.57
+        },
+        "408": {
+          "scale": 2,
+          "gif": "408/clawd-sweating.gif",
+          "png": "408/clawd-sweating.png",
+          "gifBytes": 69298,
+          "pngBytes": 2110,
+          "fill": 0.83
+        },
+        "618": {
+          "scale": 3,
+          "gif": "618/clawd-sweating.gif",
+          "png": "618/clawd-sweating.png",
+          "gifBytes": 108487,
+          "pngBytes": 4004,
+          "fill": 0.83
+        }
+      }
+    }
+  ]
+}

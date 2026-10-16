@@ -1,0 +1,37 @@
+{
+  "name": "clawd-new-coat",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Unofficial fan work: a London-postie Clawd in pixels, 48 moves, a four-outfit wardrobe and a tiny Node engine you can add your own moves to. Not affiliated with Anthropic.",
+  "license": "MIT AND CC-BY-NC-SA-4.0",
+  "author": "Charlie Luinaris",
+  "contributors": [
+    "Luin Luinaris"
+  ],
+  "keywords": [
+    "clawd",
+    "pixel-art",
+    "fan-art",
+    "sprite",
+    "gif"
+  ],
+  "engines": {
+    "node": ">=20.9.0"
+  },
+  "scripts": {
+    "export": "node export.cjs",
+    "stickers": "node export.cjs --stickers",
+    "check": "node check-art.cjs",
+    "check:outfits": "node check-art.cjs --outfit aviator && node check-art.cjs --outfit beret && node check-art.cjs --outfit nightcap && node check-art.cjs --outfit winter-fur",
+    "preview": "node -e \"console.log(require('node:url').pathToFileURL(require('node:path').resolve('preview.html')).href)\"",
+    "preview:state": "node export.cjs --preview --state",
+    "preview:outfit": "node export.cjs --preview --outfit",
+    "docs:states": "node tools/states-table.cjs",
+    "sheet:outfits": "node tools/outfit-sheet.cjs",
+    "sheet:batch1": "node tools/batch-sheet.cjs"
+  },
+  "dependencies": {
+    "jszip": "3.10.1",
+    "sharp": "0.35.5"
+  }
+}

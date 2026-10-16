@@ -1,0 +1,25 @@
+# 写不了文件头的文件（图、JSON、Markdown、生成出来的 preview-states.js）在这里标许可。
+# .cjs 和 preview.html 自己的文件头里写着，以文件头为准；这里只补上没写的那些。
+# Files that cannot carry a header are annotated here. Headers in .cjs / preview.html stay authoritative.
+version = 1
+
+# 美术：导出的 GIF / PNG / 贴纸、README 用的图 · Artwork: exported images and stickers
+[[annotations]]
+path = ["gif/**", "static/**", "sheets/**", "variants/**", "stickers/**", "docs/img/**"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Charlie Luinaris"
+SPDX-License-Identifier = "CC-BY-NC-SA-4.0"
+
+# 文档也算美术那一边 · Docs follow the artwork license
+[[annotations]]
+path = ["*.md", "**/*.md", "NOTICE"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Charlie Luinaris"
+SPDX-License-Identifier = "CC-BY-NC-SA-4.0"
+
+# 代码那一边写不了头的：导出时生成的预览卡片、npm 的两份清单、.gitignore · Code-side files without headers
+[[annotations]]
+path = ["preview-states.js", "package.json", "package-lock.json", ".gitignore"]
+precedence = "aggregate"
+SPDX-FileCopyrightText = "2026 Charlie Luinaris"
+SPDX-License-Identifier = "MIT"

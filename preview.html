@@ -1,0 +1,248 @@
+<!doctype html>
+<!--
+  clawd-new-coat · preview.html · preview page by Luin Luinaris · unofficial Clawd fan work, Clawd belongs to Anthropic
+  SPDX-FileCopyrightText: 2026 Charlie Luinaris
+  SPDX-FileContributor: Luin Luinaris
+  SPDX-License-Identifier: MIT
+-->
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <title>老伦敦信差 · Clawd 动作册</title>
+  <style>
+    :root { color-scheme: light; --bg:#f5f0e7; --panel:#fcf9f3; --ink:#43362d; --muted:#8b796a; --line:#ded3c3; --accent:#965d40; --grid:#f1e9dc; --shade:rgba(72,48,29,.11); }
+    * { box-sizing:border-box; }
+    body { margin:0; min-width:0; background:var(--bg); color:var(--ink); font-family:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif; }
+    body.dark { color-scheme:dark; --bg:#262322; --panel:#312c29; --ink:#ede2d1; --muted:#b7a58e; --line:#51473e; --accent:#edaf7e; --grid:#37312c; --shade:rgba(0,0,0,.25); }
+    button { font:inherit; color:inherit; cursor:pointer; }
+    button:focus-visible { outline:2px solid var(--accent); outline-offset:4px; }
+    .page { width:min(1120px,100%); margin:auto; padding:42px 24px 30px; }
+    header { display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:28px; }
+    .eyebrow { margin:0 0 10px; color:var(--muted); font-size:10px; letter-spacing:.22em; }
+    h1 { margin:0; font-family:Georgia,"Songti SC",serif; font-weight:500; font-size:clamp(23px,4vw,32px); letter-spacing:.04em; }
+    .intro { margin:10px 0 0; color:var(--muted); font-size:13px; line-height:1.7; }
+    .controls { display:flex; gap:8px; flex-wrap:wrap; }
+    .control { min-height:38px; padding:8px 13px; border:1px solid var(--line); background:var(--panel); border-radius:6px; font-size:12px; }
+    .control:hover { border-color:var(--accent); }
+    .control[aria-pressed="true"] { color:var(--accent); }
+    .divider { display:flex; align-items:center; gap:12px; margin:0 0 18px; color:var(--muted); font-size:10px; letter-spacing:.08em; }
+    .divider::after { content:""; height:1px; flex:1; background:var(--line); }
+    .gallery { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:15px; }
+    .motion-group + .motion-group { margin-top:34px; }
+    .group-title { margin:0 0 15px; font-family:Georgia,"Songti SC",serif; font-size:19px; font-weight:500; letter-spacing:.04em; }
+    .card { min-width:0; padding:0; text-align:left; border:1px solid var(--line); border-radius:8px; background:var(--panel); overflow:hidden; }
+    .card:hover { border-color:var(--accent); box-shadow:0 3px 12px var(--shade); }
+    .canvas { background-color:var(--panel); background-image:linear-gradient(45deg,var(--grid) 25%,transparent 25%),linear-gradient(-45deg,var(--grid) 25%,transparent 25%),linear-gradient(45deg,transparent 75%,var(--grid) 75%),linear-gradient(-45deg,transparent 75%,var(--grid) 75%); background-size:20px 20px; background-position:0 0,0 10px,10px -10px,-10px 0; }
+    .card img { display:block; width:100%; aspect-ratio:1; object-fit:contain; image-rendering:pixelated; }
+    .caption { display:flex; align-items:baseline; justify-content:space-between; gap:5px; padding:12px 13px; border-top:1px solid var(--line); }
+    .caption strong { font-size:13px; font-weight:500; white-space:nowrap; }
+    .caption span { color:var(--muted); font-size:10px; letter-spacing:.01em; }
+    .new-mark { display:inline-block; margin-left:5px; padding:2px 4px; border:1px solid var(--line); border-radius:3px; color:var(--accent); font:9px/1 -apple-system,BlinkMacSystemFont,sans-serif; vertical-align:middle; }
+    footer { margin-top:22px; padding-top:15px; border-top:1px solid var(--line); color:var(--muted); font-size:11px; line-height:1.8; display:flex; flex-wrap:wrap; justify-content:space-between; gap:7px 20px; }
+    dialog { width:min(900px,calc(100vw - 28px)); max-width:calc(100vw - 28px); max-height:calc(100dvh - 28px); margin:auto; padding:22px; overflow:auto; border:1px solid var(--line); border-radius:10px; background:var(--bg); color:var(--ink); box-shadow:0 14px 60px rgba(0,0,0,.22); }
+    dialog::backdrop { background:rgba(24,19,15,.58); }
+    .dialog-head { display:flex; align-items:center; justify-content:space-between; gap:10px; }
+    h2 { margin:0; font-size:19px; font-weight:500; }
+    #close { flex:none; font-size:19px; min-width:36px; padding:3px 8px; }
+    .tabs { display:flex; flex-wrap:wrap; gap:8px; margin:18px 0; }
+    .tab.active { border-color:var(--accent); color:var(--accent); }
+    .detail-stage { display:flex; justify-content:center; width:100%; overflow:hidden; border:1px solid var(--line); border-radius:6px; }
+    .detail-stage img { display:block; width:min(450px,100%); height:auto; aspect-ratio:1; image-rendering:pixelated; }
+    .sheet-viewport { max-width:100%; overflow-x:auto; border:1px solid var(--line); border-radius:6px; scrollbar-color:var(--muted) var(--panel); }
+    .sheet-content { width:var(--sheet-width); }
+    .sheet-content img { display:block; width:100%; height:180px; image-rendering:pixelated; }
+    .sheet-labels { display:grid; grid-template-columns:repeat(var(--sheet-count),1fr); padding:9px 0; text-align:center; color:var(--muted); font-size:11px; border-top:1px solid var(--line); }
+    .detail-note { color:var(--muted); margin:14px 0 0; font-size:12px; line-height:1.8; }
+    [hidden] { display:none !important; }
+    @media (max-width:840px) { .gallery { grid-template-columns:repeat(3,minmax(0,1fr)); } }
+    @media (max-width:580px) { .page { padding:25px 14px; } header { gap:17px; margin-bottom:22px; } .gallery { grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; } .caption { padding:10px 9px; flex-wrap:wrap; gap:4px 7px; } .caption strong { font-size:12px; } .caption span { font-size:9px; } dialog { padding:16px; } h2 { font-size:17px; } }
+    @media (prefers-reduced-motion:reduce) { *,*::before,*::after { scroll-behavior:auto !important; } }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header>
+      <div>
+        <p class="eyebrow">CLAWD · THE OLD LONDON POSTMAN</p>
+        <h1>小信差的动作册</h1>
+        <p class="intro" id="intro">四十种小动作。点开一格，近一点看他。</p>
+      </div>
+      <div class="controls">
+        <button class="control" id="play" type="button" aria-pressed="true">暂停动画</button>
+        <button class="control" id="theme" type="button" aria-pressed="false">深色纸面</button>
+      </div>
+    </header>
+    <div class="divider"><span id="play-status" aria-live="polite">循环播放中</span></div>
+    <main id="gallery" aria-label="四十种信差动作">
+      <section class="motion-group" aria-labelledby="core-title">
+        <h2 class="group-title" id="core-title">日常动作</h2>
+        <div class="gallery" id="core-gallery"></div>
+      </section>
+      <section class="motion-group" aria-labelledby="locomotion-title">
+        <h2 class="group-title" id="locomotion-title">走跑跳</h2>
+        <div class="gallery" id="locomotion-gallery"></div>
+      </section>
+      <section class="motion-group" aria-labelledby="emotion-title">
+        <h2 class="group-title" id="emotion-title">情绪</h2>
+        <div class="gallery" id="emotion-gallery"></div>
+      </section>
+    </main>
+    <footer>
+      <span>300 × 300 · 透明底 · 清晰像素边缘</span>
+      <span>暂停时显示每个动作的第一帧</span>
+    </footer>
+  </div>
+  <dialog id="detail" aria-labelledby="detail-title">
+    <div class="dialog-head">
+      <h2 id="detail-title"></h2>
+      <button class="control" id="close" type="button" aria-label="关闭放大查看">×</button>
+    </div>
+    <div class="tabs" aria-label="预览方式">
+      <button class="control tab active" id="animation-tab" type="button" aria-pressed="true">动作预览</button>
+      <button class="control tab" id="keyframes-tab" type="button" aria-pressed="false">关键姿势</button>
+      <button class="control" id="detail-play" type="button" aria-pressed="true">暂停动画</button>
+    </div>
+    <div class="detail-stage canvas" id="animation-view"><img id="detail-image" alt=""></div>
+    <div class="sheet-viewport canvas" id="keyframes-view" tabindex="0" aria-label="关键帧图集，可左右滚动" hidden>
+      <div class="sheet-content" id="sheet-content">
+        <img id="sheet-image" alt="">
+        <div class="sheet-labels" id="sheet-labels"></div>
+      </div>
+    </div>
+    <p class="detail-note" id="detail-note"></p>
+  </dialog>
+  <!-- states/ 里的新动作：node export.cjs 把它们写进 preview-states.js（没有就是空表），这一页读到就把卡片排进各组前头；文件不在也照样能看老的四十种 -->
+  <script src="preview-states.js"></script>
+  <script>
+    'use strict';
+    const cacheVersion = 'v9';
+    const locomotionIds = new Set(['strolling','running','sprinting','hopping','jumping','leaping','front-running']);
+    const emotionIds = new Set(['dizzy','blushing','teary','pouting']);
+    const newIds = new Set(['lantern','pointing','waving','umbrella','stretching']);
+    const states = [
+      ['idle','发呆',6],['lantern','提灯',7],['pointing','指路',8],['waving','挥手',8],['umbrella','打伞',7],['stretching','伸懒腰',8],
+      ['reading','读信',8],['stargazing','看星星',8],['phone','打电话',7],['painting','画画',8],
+      ['dizzy','晕乎乎',8],['blushing','害羞脸红',6],['teary','委屈',7],['pouting','鼓脸',7],
+      ['hugged','被抱起来',8],['fishing','陪钓',7],['writing','写信',8],['yawning','打哈欠',8],['dice','掷骰',8],
+      ['greeting','扶帽致意',8],['delighted','爱心小跳',8],['typing','打字',6],
+      ['error','出错',6],['thinking','看怀表',8],['happy','开心',6],
+      ['notification','摇铜铃',8],['sleeping','睡着',4],['building','搭建',6],
+      ['juggling','抛接',8],['sweeping','打扫',6],['carrying','搬运',6],
+      ['walking','巡行',4],['listening','听着呢',6],
+      ['front-running','正面小跑',6],
+      ['strolling','慢悠悠走',4],['running','小跑',6],['sprinting','冲刺',6],
+      ['hopping','轻轻蹦',6],['jumping','蓄力高跳',8],['leaping','向前跃',8]
+    ].map(([id,label,count])=>({id,label,count,group:locomotionIds.has(id)?'locomotion':emotionIds.has(id)?'emotion':'core'}));
+    // 新动作：id、中文名、关键帧数、组、组名、rev（GIF 的指纹，拼进缓存参数——改一笔重导，浏览器不会还拿着旧图）
+    const extraStates = (Array.isArray(window.CLAWD_EXTRA_STATES) ? window.CLAWD_EXTRA_STATES : []).map(state => ({...state, extra:true}));
+    const revs = new Map(extraStates.map(state => [state.id, state.rev]));
+    const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let playing = !reducedMotion.matches;
+    let manualPlayback = false;
+    let selected = null;
+    let sheetMode = false;
+    const byId = id => document.getElementById(id);
+    const versioned = (path, id) => `${path}?v=${cacheVersion}${revs.has(id) ? `-${revs.get(id)}` : ''}`;
+    const asset = id => versioned(playing ? `gif/clawd-${id}.gif` : `static/clawd-${id}.png`, id);
+    const gallery = byId('gallery');
+    // 新动作另开的组（道具、表情包……）这一页原来没有那一节，第一次遇到就接在情绪后面开一节
+    function galleryFor(state) {
+      let target = byId(`${state.group}-gallery`);
+      if (target) return target;
+      const section = document.createElement('section'); section.className = 'motion-group';
+      const title = document.createElement('h2'); title.className = 'group-title'; title.id = `${state.group}-title`; title.textContent = state.groupLabel || state.group;
+      section.setAttribute('aria-labelledby', title.id);
+      target = document.createElement('div'); target.className = 'gallery'; target.id = `${state.group}-gallery`;
+      section.append(title, target); gallery.append(section);
+      return target;
+    }
+    function makeCard(state) {
+      const card = document.createElement('button');
+      card.type = 'button'; card.className = 'card';
+      card.setAttribute('aria-label', `放大查看：${state.label}`);
+      const image = document.createElement('img');
+      image.className = 'canvas'; image.dataset.state = state.id;
+      image.width = 300; image.height = 300; image.src = asset(state.id);
+      image.alt = `${state.label}的像素信差`;
+      const caption = document.createElement('div'); caption.className = 'caption';
+      const label = document.createElement('strong'); label.textContent = state.label;
+      if (newIds.has(state.id) || state.extra) { const mark = document.createElement('small'); mark.className = 'new-mark'; mark.textContent = '新'; label.append(mark); }
+      const id = document.createElement('span'); id.textContent = state.id;
+      caption.append(label,id); card.append(image,caption);
+      card.addEventListener('click',()=>openDetail(state));
+      return card;
+    }
+    for (const state of states) byId(`${state.group}-gallery`).append(makeCard(state));
+    // 新动作排在各组前头（日常那一组排在待机后面，和 v9 那五个一样）；倒着插，插完还是 states/ 的文件名顺序
+    for (const state of [...extraStates].reverse()) {
+      const target = galleryFor(state), anchor = state.group === 'core' ? target.children[1] || null : target.firstChild;
+      target.insertBefore(makeCard(state), anchor);
+    }
+    if (extraStates.length) byId('intro').textContent = `四十种小动作，又画了 ${extraStates.length} 种新的。点开一格，近一点看他。`;
+    function updatePlayback() {
+      for (const image of gallery.querySelectorAll('img')) image.src = asset(image.dataset.state);
+      for (const id of ['play','detail-play']) {
+        const button = byId(id);
+        button.textContent = playing ? '暂停动画' : '播放动画';
+        button.setAttribute('aria-pressed',String(playing));
+      }
+      byId('play-status').textContent = playing ? '循环播放中' : '静止首帧';
+      if (selected) { byId('detail-image').src = asset(selected.id); updateNote(); }
+    }
+    function togglePlayback() { manualPlayback = true; playing = !playing; updatePlayback(); }
+    byId('play').addEventListener('click',togglePlayback);
+    byId('detail-play').addEventListener('click',togglePlayback);
+    byId('theme').addEventListener('click',()=>{
+      const dark = document.body.classList.toggle('dark');
+      byId('theme').textContent = dark ? '浅色纸面' : '深色纸面';
+      byId('theme').setAttribute('aria-pressed',String(dark));
+    });
+    function updateNote() {
+      if (!selected) return;
+      byId('detail-note').textContent = sheetMode
+        ? `${selected.label} · ${selected.count} 个关键姿势，依序从左往右。可左右滚动查看。`
+        : `${selected.label} · ${playing ? '循环播放' : '静止首帧'} · 300 × 300`;
+    }
+    function setMode(showSheet) {
+      sheetMode = showSheet;
+      byId('animation-view').hidden = showSheet;
+      byId('keyframes-view').hidden = !showSheet;
+      byId('detail-play').hidden = showSheet;
+      for (const [id,active] of [['animation-tab',!showSheet],['keyframes-tab',showSheet]]) {
+        byId(id).classList.toggle('active',active);
+        byId(id).setAttribute('aria-pressed',String(active));
+      }
+      updateNote();
+    }
+    function openDetail(state) {
+      selected = state;
+      byId('detail-title').textContent = `${state.label} · ${state.id}`;
+      byId('detail-image').src = asset(state.id);
+      byId('detail-image').alt = `${state.label}的放大动作预览`;
+      byId('sheet-image').src = versioned(`sheets/${state.id}-keyframes.png`, state.id);
+      byId('sheet-image').alt = `${state.label}：${state.count} 个关键姿势`;
+      byId('sheet-content').style.setProperty('--sheet-width',`${state.count * 180}px`);
+      byId('sheet-content').style.setProperty('--sheet-count',state.count);
+      byId('sheet-labels').replaceChildren(...Array.from({length:state.count},(_,i)=>{
+        const label = document.createElement('span'); label.textContent = `${state.label} ${String(i+1).padStart(2,'0')}`; return label;
+      }));
+      byId('keyframes-view').scrollLeft = 0;
+      setMode(false); byId('detail').showModal();
+    }
+    byId('animation-tab').addEventListener('click',()=>setMode(false));
+    byId('keyframes-tab').addEventListener('click',()=>setMode(true));
+    byId('close').addEventListener('click',()=>byId('detail').close());
+    byId('detail').addEventListener('click',event=>{
+      if (event.target !== byId('detail')) return;
+      const rect = byId('detail').getBoundingClientRect();
+      if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) byId('detail').close();
+    });
+    reducedMotion.addEventListener('change',event=>{
+      if (!manualPlayback) { playing = !event.matches; updatePlayback(); }
+    });
+    updatePlayback();
+  </script>
+</body>
+</html>
