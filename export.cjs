@@ -655,6 +655,17 @@ async function exportStickers({ outfit = null, only = null } = {}) {
   return { entries, warnings };
 }
 
+// [1016 名字跟着图走] 导出和裁贴纸收尾时，把署名那一行写进每张 GIF / PNG 的元数据（tools/stamp-credits.cjs）：
+// 图被单独拷走，名字还在文件里。像素一个字节不动，盖过的不重复盖；--no-stamp 关掉（比较像素时用）。
+async function stampOutputs(argv) {
+  if (argv.includes('--no-stamp') || argv.includes('--preview')) return;
+  const { stampTree } = require('./tools/stamp-credits.cjs');
+  const dirs = argv.includes('--stickers') ? ['stickers'] : ['gif', 'static', 'sheets', 'variants', 'lockscreen', 'keyframes-atlas.png'];
+  const exists = require('node:fs').existsSync; // 这个文件的 fs 是 promises 版，没有 existsSync
+  const r = stampTree(dirs.map(d => path.join(__dirname, d)).filter(p => exists(p)));
+  console.log(`署名盖进图里：${r.stamped} 张新盖，${r.skipped} 张已经盖过`);
+}
+
 if (require.main === module) {
   const argv = process.argv.slice(2), at = argv.indexOf('--outfit');
   const outfit = at >= 0 ? argv[at + 1] : argv.find(arg => arg.startsWith('--outfit='))?.slice('--outfit='.length);
@@ -672,6 +683,7 @@ if (require.main === module) {
     : outfit !== undefined || argv.includes('--preview')
     ? (outfit && !outfit.startsWith('--') && argv.includes('--preview') ? previewOutfit(outfit) : Promise.reject(new Error('换装只出预览：node export.cjs --outfit <name> --preview')))
     : argv.includes('--package-only') ? packageAll() : exportAll();
-  job.catch(error => { console.error(error.stack); process.exitCode = 1; });
+  const stamped = job.then(result => stampOutputs(argv).then(() => result));
+  stamped.catch(error => { console.error(error.stack); process.exitCode = 1; });
 }
 module.exports = { exportAll, packageAll, previewOutfit, previewState, exportStickers, delaysFor, makeSheet, validatePixels };

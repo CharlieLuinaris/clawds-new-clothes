@@ -28,7 +28,8 @@
     "preview:outfit": "node export.cjs --preview --outfit",
     "docs:states": "node tools/states-table.cjs",
     "sheet:outfits": "node tools/outfit-sheet.cjs",
-    "sheet:batch1": "node tools/batch-sheet.cjs"
+    "sheet:batch1": "node tools/batch-sheet.cjs",
+    "stamp": "node tools/stamp-credits.cjs gif static stickers sheets variants"
   },
   "dependencies": {
     "jszip": "3.10.1",

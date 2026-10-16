@@ -11,7 +11,8 @@ This little one grew version by version. The full development diary stays at hom
 搬出来住的这一版。动作、衣服、规矩和家里那份是同一个版本；只动了「搬家」要动的地方：
 The first public version. Same moves, outfits and rules as at home; only the moving-out changes:
 
-- 48 支动作和朝西的指路：`gif/`、`static/`、300 档贴纸和家里那份逐字节相同，一个像素没动。
+- 48 支动作和朝西的指路：`gif/`、`static/`、300 档贴纸和家里那份像素逐格相同，一个像素没动。文件里多了一样东西：每张 GIF 和 PNG 的元数据里写着署名那一行（`tools/stamp-credits.cjs`，`npm run export` / `npm run stickers` 收尾自动盖），图被单独拷走，名字还在文件里。
+- The 48 moves and the west-facing pointing variant: `gif/`, `static/` and the 300px stickers are pixel-for-pixel the same as at home. One thing is new in the files: the credit line rides in every GIF and PNG as metadata (`tools/stamp-credits.cjs`, stamped automatically at the end of `npm run export` / `npm run stickers`), so a file copied out alone still carries the names.
   All 48 moves and the west-facing variant (`gif/`, `static/`, 300 px stickers) are byte-identical to the home version.
 - 依赖改由 `package.json` 钉版本（sharp 0.35.5、jszip 3.10.1），`npm ci` 装出来的才和仓库里的图逐字节相同；全量导出的 zip 名跟着 `package.json` 的名字和版本走。
 - `tools/outfit-sheet.cjs` 的原稿那一格改成可选（`--originals <目录>`）；`tools/batch-sheet.cjs` 拿掉了「参考格」那一列（参考图是别人画的，没搬出来）；新加 `tools/states-table.cjs`，从 manifest 出 `docs/states.md`。
