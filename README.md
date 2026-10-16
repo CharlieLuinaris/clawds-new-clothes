@@ -192,8 +192,8 @@ Same spec as the base set: 300 × 300, 1-bit transparency, 70 / 60 / 70 ms, loop
 `npm run check:outfits` also checks that the committed packs list every move: add a move, and it fails until you rerun `npm run export:outfits`.
 `npm run check:outfits` 顺手对一下仓库里的整包是不是 48 支都在：加了一支动作，没重跑 `npm run export:outfits` 它就不过。
 
-The base set stays byte-identical, and the full zip carries no outfit packs. `npm run export:outfits` builds them into a separate `clawds-new-clothes-outfits-v<version>.zip`, to be attached from the next Release on (the v1.0.0 Release does not have it). `manifest-<outfit>.json` is not committed; it is in that zip. The outfits zip carries no stickers: take them from `stickers/<outfit>/`.
-基础那套一个字节不动，全量 zip 也不带衣服包。`npm run export:outfits` 另打一个换装 zip `clawds-new-clothes-outfits-v<版本>.zip`，从下一版起附在 Release 上（v1.0.0 那一版还没有）。`manifest-<衣服>.json` 不进 git，在那个 zip 里；换装 zip 不带贴纸，贴纸去 `stickers/<衣服>/` 拿。
+The base set stays byte-identical, and the full zip carries no outfit packs. `npm run export:outfits` builds them into a separate `clawds-new-clothes-outfits-v<version>.zip`, attached to every Release from v1.1.0 on (the v1.0.0 Release does not have it). `manifest-<outfit>.json` is not committed; it is in that zip. The outfits zip carries no stickers: take them from `stickers/<outfit>/`.
+基础那套一个字节不动，全量 zip 也不带衣服包。`npm run export:outfits` 另打一个换装 zip `clawds-new-clothes-outfits-v<版本>.zip`，从 v1.1.0 起附在每一版 Release 上（v1.0.0 那一版还没有）。`manifest-<衣服>.json` 不进 git，在那个 zip 里；换装 zip 不带贴纸，贴纸去 `stickers/<衣服>/` 拿。
 
 ## 文件 · What's in here
 

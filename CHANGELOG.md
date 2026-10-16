@@ -6,12 +6,15 @@ This little one grew version by version. The full development diary stays at hom
 一共 **48 支动作 · 2211 帧 · 340 个关键帧 · 四套衣服**：v6 原型 22 支 → v7 重做并加 5 → v8 加 8 → v9 加 5 → 第一批加 8。
 **48 moves · 2,211 frames · 340 keyframes · four outfits**: 22 in the v6 prototype → v7 redrew them and added 5 → v8 added 8 → v9 added 5 → batch 1 added 8.
 
-## 未发版 · Unreleased
+## v1.1.0 · 四身衣服 · Four Outfits (2026-10-17)
 
 - 四套衣服各出一整包：`node export.cjs --outfit <名字>` 把 48 支动作和朝西的指路都穿上那件，出到 `gif/<名字>/`、`static/<名字>/`、`sheets/<名字>/`、`variants/<名字>/`，根上一份 `manifest-<名字>.json`；`npm run export:outfits` 一次出四套整包、四套贴纸，再打一个换装 zip（`clawds-new-clothes-outfits-v<版本>.zip`，下一版发版时附到 Release 上、hash 记进 SHA256SUMS）。四套整包和 300 档贴纸进 git；`check-art --outfit` 和 `--package-outfits` 各有一道闸，整包跟不上眼下的 48 支就不过。基础那套的 `gif/`、`static/`、`stickers/300/` 逐字节没动，全量 zip 也不带衣服包。`--outfit` 后面忘了带名字现在直接报错，不再悄悄重出一遍基础包。
 - Each of the four outfits now has a full pack: `node export.cjs --outfit <name>` dresses all 48 moves and the west-facing variant into `gif/<name>/`, `static/<name>/`, `sheets/<name>/` and `variants/<name>/`, plus `manifest-<name>.json`. `npm run export:outfits` builds all four packs and their stickers, then an outfits zip (`clawds-new-clothes-outfits-v<version>.zip`) to attach to the next Release, its hash added to SHA256SUMS. The four packs and their 300 px stickers are committed; `check-art --outfit` and `--package-outfits` both fail when a pack falls behind the current 48 moves. The base `gif/`, `static/` and `stickers/300/` are byte-identical, and the full zip carries no outfit packs. `--outfit` with no name now fails instead of quietly re-exporting the base set.
 - 睡帽开心那两跳的星给绒球让位（她 10/16 拍的）：衣服新开一个口子 `propShift`，只许挪 `engine.cjs` 里 `PROP_SHIFT_TARGETS` 登记过的道具，整 5px 一步，写错名字直接报错。睡帽上大星右挪 20、右边那颗小金星右挪 15，45 帧里星一粒都不落在帽子上；`gif/nightcap/clawd-happy.gif`、`static/nightcap/clawd-happy.png`、`sheets/nightcap/happy-keyframes.png` 和睡帽 happy 的贴纸跟着重出。基础那套和另外三套衣服一个字节没动。
 - The nightcap's happy stars now step aside for the pompom: outfits get a `propShift` hook that can move only the props registered in `PROP_SHIFT_TARGETS` in `engine.cjs`, in whole 5 px steps, and a misspelt name throws. On the nightcap the big star moves 20 px right and the right-hand small star 15 px, so no star pixel lands on the cap in any of the 45 frames; the nightcap happy GIF, still, keyframe sheet and stickers were re-exported. The base set and the other three outfits are byte-identical.
+
+- Release 附件从这一版起多了换装 zip `clawds-new-clothes-outfits-v1.1.0.zip`（四套整包和各自的 `manifest-<衣服>.json`，打包前先盖署名），贴纸 zip 也把四身的三档一起装了进去；全量 zip 照旧只有不穿衣服那一套。
+- From this release on, the assets include the outfits zip `clawds-new-clothes-outfits-v1.1.0.zip` (all four packs with their `manifest-<outfit>.json`, stamped before packing), and the sticker zip now carries all four outfits in three sizes too; the full zip still holds only the base set.
 
 ## v1.0.0 · 第一封信 · First Post (2026-10-16)
 

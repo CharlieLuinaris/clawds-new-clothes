@@ -1,6 +1,6 @@
 {
   "name": "clawds-new-clothes",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "private": true,
   "description": "Unofficial fan work: a London-postie Clawd in pixels, 48 moves, a four-outfit wardrobe and a tiny Node engine you can add your own moves to. Not affiliated with Anthropic.",
   "license": "MIT AND CC-BY-NC-SA-4.0",

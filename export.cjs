@@ -300,7 +300,7 @@ async function packageAll() {
       // 本目录里解开的旧包（比如有人把 v7 的 zip 解在这里看）不进新包，不然 v8 的包里会整个套着一份 v7；解开的换装 zip 同理
       if (!prefix && entry.isDirectory() && (/^clawd-london-expressions-v\d+$/.test(entry.name) || entry.name.startsWith(`${PKG.name}-v`) || entry.name.startsWith(`${PKG.name}-outfits-v`))) continue;
       // 换装整包不进全量 zip：gif/<o>/、static/<o>/、sheets/<o>/、variants/<o>/ 和根上的 manifest-<o>.json 是 --outfit <name> 出的，
-      // 打进来的话这个包有多大、带哪几套，全看这台电脑上跑没跑过换装；要衣服的去拿 --package-outfits 打的换装 zip（随下一版 Release 附上；v1.0.0 那一版的附件里还没有）。
+      // 打进来的话这个包有多大、带哪几套，全看这台电脑上跑没跑过换装；要衣服的去拿 --package-outfits 打的换装 zip（v1.1.0 起附在 Release 上；v1.0.0 那一版的附件里还没有）。
       // 基础那套在这几个目录里一个子目录都没有（variants/ 只有基础那支的逐帧目录），所以全量 zip 的条目表一条不变
       if (['gif', 'static', 'sheets'].includes(prefix) && entry.isDirectory()) continue;
       if (prefix === 'variants' && entry.isDirectory() && !VARIANTS.some(variant => variant.id === entry.name)) continue;
